@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reliable Movers — Advntage</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#3B6FF0;--black:#060608;--dark:#0C0D10;--card:#111318;--border:rgba(255,255,255,0.07);--white:#F0F0F8;--gray:#6B6B80;--light:#A0A0BC;--green:#22D07A;--gold:#F0A832;--red:#F05050;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;}
+.sidebar{position:fixed;top:0;left:0;bottom:0;width:220px;background:var(--dark);border-right:1px solid var(--border);padding:24px 0;display:flex;flex-direction:column;z-index:100;}
+.sidebar-brand{padding:0 20px 20px;border-bottom:1px solid var(--border);margin-bottom:16px;}
+.brand{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;}
+.brand .ad{color:var(--blue);}
+.badge{display:inline-block;margin-top:6px;background:rgba(59,111,240,0.12);color:#7EB3FF;border:1px solid rgba(59,111,240,0.2);border-radius:6px;padding:2px 10px;font-size:0.68rem;font-weight:600;text-transform:uppercase;}
+.nav-label{font-size:0.62rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.12em;padding:0 20px;margin:14px 0 6px;}
+.nav-link{display:block;padding:9px 20px;color:var(--gray);font-size:0.875rem;cursor:pointer;border-left:2px solid transparent;transition:all 0.15s;user-select:none;}
+.nav-link:hover{color:var(--white);background:rgba(255,255,255,0.03);}
+.nav-link.on{color:#7EB3FF;border-left-color:var(--blue);background:rgba(59,111,240,0.08);}
+.sidebar-foot{margin-top:auto;padding:16px 20px;border-top:1px solid var(--border);font-size:0.72rem;color:var(--gray);}
+.logout{margin-top:10px;width:100%;background:none;border:1px solid var(--border);border-radius:8px;padding:9px;color:var(--gray);font-family:'DM Sans',sans-serif;font-size:0.8rem;cursor:pointer;}
+.logout:hover{color:var(--white);}
+.main{margin-left:220px;min-height:100vh;}
+.topbar{background:rgba(6,6,8,0.95);border-bottom:1px solid var(--border);padding:0 28px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;backdrop-filter:blur(16px);}
+.topbar h1{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;}
+.topbar p{font-size:0.72rem;color:var(--gray);margin-top:1px;}
+.period{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:5px 12px;font-size:0.72rem;color:var(--light);white-space:nowrap;}
+.content{padding:24px 28px;}
+.section{display:none;}
+.section.on{display:block;}
+.sec-head{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.sec-head-line{flex:1;height:1px;background:var(--border);}
+.sec-head-label{font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:700;white-space:nowrap;}
+.stats-5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px;}
+.stat{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;}
+.stat-label{font-size:0.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;}
+.stat-value{font-family:'DM Mono',monospace;font-size:1.45rem;font-weight:500;line-height:1;margin-bottom:4px;}
+.stat-sub{font-size:0.7rem;color:var(--gray);}
+.tbl-wrap{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px;}
+.tbl-head{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;}
+.tbl-head h3{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;}
+.tbl-badge{border-radius:6px;padding:3px 10px;font-size:0.68rem;font-weight:600;white-space:nowrap;}
+.bg-blue{background:rgba(59,111,240,0.1);color:#7EB3FF;border:1px solid rgba(59,111,240,0.2);}
+.bg-purple{background:rgba(168,85,247,0.1);color:#C4B5FD;border:1px solid rgba(168,85,247,0.2);}
+.tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table{width:100%;border-collapse:collapse;min-width:480px;}
+th{padding:9px 16px;text-align:left;font-size:0.63rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.01);white-space:nowrap;}
+td{padding:11px 16px;font-size:0.84rem;color:var(--light);border-bottom:1px solid var(--border);}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(255,255,255,0.02);}
+.td-name{color:var(--white);font-weight:500;}
+.mono{font-family:'DM Mono',monospace;font-size:0.8rem;}
+.c-green{color:var(--green);font-family:'DM Mono',monospace;font-weight:600;}
+.c-gray{color:var(--gray);font-family:'DM Mono',monospace;}
+.pill{display:inline-flex;align-items:center;gap:4px;border-radius:100px;padding:2px 9px;font-size:0.68rem;font-weight:600;white-space:nowrap;}
+.pill::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0;}
+.p-green{background:rgba(34,208,122,0.1);color:var(--green);border:1px solid rgba(34,208,122,0.2);}
+.p-gray{background:rgba(255,255,255,0.04);color:var(--gray);border:1px solid var(--border);}
+.alert{background:rgba(240,80,80,0.08);border:1px solid rgba(240,80,80,0.2);border-radius:10px;padding:12px 16px;margin-bottom:20px;font-size:0.83rem;color:var(--light);display:flex;align-items:flex-start;gap:10px;}
+.alert-icon{font-size:1.1rem;flex-shrink:0;margin-top:1px;}
+.alert h4{font-size:0.85rem;font-weight:600;color:var(--red);margin-bottom:4px;}
+.change{display:grid;grid-template-columns:150px 1fr;border-bottom:1px solid var(--border);}
+.change:last-child{border-bottom:none;}
+.change-left{padding:14px 16px;border-right:1px solid var(--border);font-size:0.76rem;color:var(--gray);}
+.change-left strong{display:block;color:var(--light);margin-bottom:4px;}
+.change-left span{font-size:0.67rem;color:#7EB3FF;}
+.change-right{padding:14px 16px;}
+.change-tag{display:inline-flex;font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;padding:2px 9px;border-radius:100px;margin-bottom:7px;}
+.ct-alert{background:rgba(240,80,80,0.1);color:var(--red);border:1px solid rgba(240,80,80,0.2);}
+.ct-monitor{background:rgba(240,168,50,0.1);color:var(--gold);border:1px solid rgba(240,168,50,0.2);}
+.change-title{font-size:0.88rem;font-weight:600;color:var(--white);margin-bottom:4px;}
+.change-desc{font-size:0.8rem;color:var(--gray);line-height:1.65;}
+.change-desc strong{color:var(--light);}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.tag{font-size:0.67rem;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:5px;padding:2px 8px;color:var(--gray);}
+.report-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;font-size:0.85rem;color:var(--gray);line-height:1.9;}
+.report-card strong{color:var(--white);}
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--dark);border-top:1px solid var(--border);z-index:100;padding:8px 0 env(safe-area-inset-bottom,8px);}
+.mobile-nav-inner{display:flex;justify-content:space-around;}
+.mnav{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 10px;cursor:pointer;border-radius:8px;min-width:52px;transition:all 0.15s;}
+.mnav:hover,.mnav.on{background:rgba(59,111,240,0.12);}
+.mnav-icon{font-size:1.1rem;line-height:1;}
+.mnav-label{font-size:0.58rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.06em;}
+.mnav.on .mnav-label{color:#7EB3FF;}
+@media(max-width:768px){
+  .sidebar{display:none;}
+  .main{margin-left:0;padding-bottom:72px;}
+  .topbar{padding:0 16px;height:52px;}
+  .content{padding:16px;}
+  .period{display:none;}
+  .stats-5{grid-template-columns:repeat(2,1fr);}
+  .stat-value{font-size:1.2rem;}
+  .change{grid-template-columns:1fr;}
+  .change-left{border-right:none;border-bottom:1px solid var(--border);padding:10px 14px;}
+  .mobile-nav{display:block;}
+  .topbar h1{font-size:0.9rem;}
+  .topbar p{display:none;}
+}
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand"><span class="ad">Ad</span>vntage</div>
+    <div class="badge">Reliable Movers</div>
+  </div>
+  <div class="nav-label">Overview</div>
+  <div class="nav-link on" onclick="nav('overview',this)">◈ Dashboard</div>
+  <div class="nav-label">Google Ads</div>
+  <div class="nav-link" onclick="nav('google',this)">G Campaigns</div>
+  <div class="nav-link" onclick="nav('keywords',this)">⌇ Keywords</div>
+  <div class="nav-label">Activity</div>
+  <div class="nav-link" onclick="nav('changes',this)">⚡ Changes</div>
+  <div class="nav-link" onclick="nav('report',this)">≡ Report</div>
+  <div class="sidebar-foot">
+    Data updated<br><strong style="color:var(--light)">Apr 7, 2026 · Last 7 Days</strong>
+    <button class="logout" onclick="window.location.href='dashboard.html'">Sign Out</button>
+  </div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div><h1 id="page-title">Dashboard Overview</h1><p id="page-sub">Google Ads · Last 7 Days</p></div>
+    <div class="period">Mar 31 – Apr 6, 2026</div>
+  </div>
+  <div class="content">
+
+    <div id="sec-overview" class="section on">
+      <div class="alert">
+        <div class="alert-icon">⚠️</div>
+        <div><h4>Conversion Tracking Issue — reliablemoversllc.net</h4>
+        <p>The .net campaign is generating clicks and calls but conversions are not being tracked. All conversion actions are configured for the .com domain only. Leads are arriving but unattributed. Fix in progress.</p></div>
+      </div>
+      <div class="sec-head"><div class="sec-head-label" style="color:#7EB3FF">Google Ads</div><div class="sec-head-line"></div></div>
+      <div class="stats-5">
+        <div class="stat"><div class="stat-label">Impressions</div><div class="stat-value" style="color:#7EB3FF">838</div><div class="stat-sub">13.96% CTR</div></div>
+        <div class="stat"><div class="stat-label">Clicks</div><div class="stat-value" style="color:#7EB3FF">117</div><div class="stat-sub">$4.41 avg CPC</div></div>
+        <div class="stat"><div class="stat-label">Spend</div><div class="stat-value" style="color:#7EB3FF">$515.90</div><div class="stat-sub">2 campaigns</div></div>
+        <div class="stat"><div class="stat-label">Conversions</div><div class="stat-value" style="color:var(--green)">2</div><div class="stat-sub">⚠ .net untracked</div></div>
+        <div class="stat"><div class="stat-label">Cost/Lead</div><div class="stat-value" style="color:#7EB3FF">$97.40</div><div class="stat-sub">.com only</div></div>
+      </div>
+    </div>
+
+    <div id="sec-google" class="section">
+      <div class="tbl-wrap">
+        <div class="tbl-head"><h3>Google Campaigns</h3><span class="tbl-badge bg-blue">2 active</span></div>
+        <div class="tbl-scroll">
+          <table>
+            <thead><tr><th>Campaign</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>Spend</th><th>CPC</th><th>Conv.</th><th>CPL</th></tr></thead>
+            <tbody>
+              <tr>
+                <td class="td-name">reliablemoversllc.com <span style="font-size:0.7rem;color:var(--green);">✓ tracking</span></td>
+                <td class="mono">310</td><td class="mono">47</td><td class="mono">15.16%</td><td class="mono">$321.98</td><td class="mono">$6.85</td><td class="c-green">2</td><td class="mono">$160.99</td>
+              </tr>
+              <tr>
+                <td class="td-name">reliablemoversllc.net <span style="font-size:0.7rem;color:var(--red);">⚠ no tracking</span></td>
+                <td class="mono">528</td><td class="mono">70</td><td class="mono">13.26%</td><td class="mono">$193.92</td><td class="mono">$2.77</td><td class="c-gray">0*</td><td class="mono">—</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="alert">
+        <div class="alert-icon">⚠️</div>
+        <div><h4>reliablemoversllc.net — No Conversion Tracking</h4>
+        <p>70 clicks · $193.92 spend this week · 0 attributed conversions. Fix: install GTM on .net site or redirect .net traffic to .com landing pages.</p></div>
+      </div>
+    </div>
+
+    <div id="sec-keywords" class="section">
+      <div class="tbl-wrap">
+        <div class="tbl-head"><h3>Top Keywords — .com campaign</h3><span class="tbl-badge bg-blue">by spend</span></div>
+        <div class="tbl-scroll">
+          <table>
+            <thead><tr><th>Keyword</th><th>Match</th><th>Impr.</th><th>Clicks</th><th>Spend</th><th>CPC</th><th>Conv.</th><th>QS</th></tr></thead>
+            <tbody>
+              <tr><td class="td-name">moving company near me</td><td class="c-gray" style="font-size:0.7rem;">exact</td><td class="mono">87</td><td class="mono">10</td><td class="mono">$79.54</td><td class="mono">$7.95</td><td class="c-green">11</td><td style="color:var(--red);font-family:'DM Mono',monospace;font-size:0.8rem;">3/10</td></tr>
+              <tr><td class="td-name">movers syracuse ny</td><td class="c-gray" style="font-size:0.7rem;">phrase</td><td class="mono">75</td><td class="mono">7</td><td class="mono">$61.95</td><td class="mono">$8.85</td><td class="c-green">9</td><td style="color:var(--gold);font-family:'DM Mono',monospace;font-size:0.8rem;">6/10</td></tr>
+              <tr><td class="td-name">movers near me</td><td class="c-gray" style="font-size:0.7rem;">phrase</td><td class="mono">99</td><td class="mono">9</td><td class="mono">$57.80</td><td class="mono">$6.42</td><td class="c-gray">0</td><td style="color:var(--gold);font-family:'DM Mono',monospace;font-size:0.8rem;">5/10</td></tr>
+              <tr><td class="td-name">moving company syracuse</td><td class="c-gray" style="font-size:0.7rem;">phrase</td><td class="mono">32</td><td class="mono">4</td><td class="mono">$43.21</td><td class="mono">$10.80</td><td class="c-green">1</td><td style="color:var(--gold);font-family:'DM Mono',monospace;font-size:0.8rem;">6/10</td></tr>
+              <tr><td class="td-name">movers syracuse</td><td class="c-gray" style="font-size:0.7rem;">exact</td><td class="mono">54</td><td class="mono">6</td><td class="mono">$42.62</td><td class="mono">$7.10</td><td class="c-gray">0</td><td style="color:var(--green);font-family:'DM Mono',monospace;font-size:0.8rem;">8/10</td></tr>
+              <tr><td class="td-name">moving and packing services</td><td class="c-gray" style="font-size:0.7rem;">phrase</td><td class="mono">76</td><td class="mono">5</td><td class="mono">$27.44</td><td class="mono">$5.49</td><td class="c-green">1</td><td class="c-gray">—</td></tr>
+              <tr><td class="td-name">reliable movers syracuse</td><td class="c-gray" style="font-size:0.7rem;">exact</td><td class="mono">16</td><td class="mono">5</td><td class="mono">$21.98</td><td class="mono">$4.40</td><td class="c-green">2</td><td style="color:var(--green);font-family:'DM Mono',monospace;font-size:0.8rem;">10/10</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div id="sec-changes" class="section">
+      <div class="tbl-wrap">
+        <div class="tbl-head"><h3>Campaign Changes</h3><span class="tbl-badge bg-purple">2 recent</span></div>
+        <div>
+          <div class="change">
+            <div class="change-left"><strong>Apr 7, 2026</strong><span>By Advntage</span></div>
+            <div class="change-right"><div class="change-tag ct-alert">Issue Identified</div><div class="change-title">Conversion Tracking Gap — .net Campaign</div><div class="change-desc">The .net campaign spent <strong>$193.92 with 0 tracked conversions</strong>. All conversion actions point to .com only. <strong>Fix:</strong> Install GTM on .net site or redirect .net traffic to .com landing pages.</div><div class="tags"><span class="tag">reliablemoversllc.net</span><span class="tag">Conversion Tracking</span><span class="tag">Urgent</span></div></div>
+          </div>
+          <div class="change">
+            <div class="change-left"><strong>Apr 7, 2026</strong><span>By Advntage</span></div>
+            <div class="change-right"><div class="change-tag ct-monitor">Monitoring</div><div class="change-title">.net vs .com Spend Discrepancy</div><div class="change-desc">.com generated <strong>2 conversions at $160.99/lead</strong>. .net spent <strong>$193.92 with 0 attributed conversions</strong> — 38% of total spend with no measurable return. Under review pending tracking fix.</div><div class="tags"><span class="tag">Budget Efficiency</span><span class="tag">Under Review</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sec-report" class="section">
+      <div class="report-card">
+        <strong style="font-family:'Syne',sans-serif;font-size:1rem;">Reliable Movers LLC — Last 7 Days</strong><br><br>
+        <strong style="color:#7EB3FF">Google Ads</strong><br>
+        838 impressions · 117 clicks · <strong>$515.90 spend</strong> · <strong style="color:var(--green)">2 tracked conversions</strong> · $97.40 blended CPL<br>
+        <span style="color:var(--red);font-size:0.82rem;">⚠ .net campaign ($193.92) has no conversion tracking — actual leads higher than shown.</span><br><br>
+        <strong style="color:var(--white)">Campaign Breakdown</strong><br>
+        .com: 47 clicks · $321.98 · <strong style="color:var(--green)">2 conversions</strong> · $160.99/lead<br>
+        .net: 70 clicks · $193.92 · <strong style="color:var(--red)">0 tracked</strong> (no tracking installed)<br><br>
+        <strong style="color:var(--gold)">Action Items</strong><br>
+        1. Resolve conversion tracking on .net (priority)<br>
+        2. "moving company near me" — QS 3 but 11 conversions — improve landing page<br>
+        3. "reliable movers syracuse" — QS 10, strong CVR — consider increasing bid<br>
+        4. Monitor .net budget until tracking fix confirmed
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<nav class="mobile-nav">
+  <div class="mobile-nav-inner">
+    <div class="mnav on" onclick="nav('overview',null);mobileNav(this)">
+      <div class="mnav-icon">◈</div><div class="mnav-label">Home</div>
+    </div>
+    <div class="mnav" onclick="nav('google',null);mobileNav(this)">
+      <div class="mnav-icon">G</div><div class="mnav-label">Google</div>
+    </div>
+    <div class="mnav" onclick="nav('keywords',null);mobileNav(this)">
+      <div class="mnav-icon">⌇</div><div class="mnav-label">Keywords</div>
+    </div>
+    <div class="mnav" onclick="nav('changes',null);mobileNav(this)">
+      <div class="mnav-icon">⚡</div><div class="mnav-label">Changes</div>
+    </div>
+    <div class="mnav" onclick="nav('report',null);mobileNav(this)">
+      <div class="mnav-icon">≡</div><div class="mnav-label">Report</div>
+    </div>
+  </div>
+</nav>
+
+<script>
+const TITLES={overview:['Dashboard Overview','Google Ads · Last 7 Days'],google:['Google Campaigns','Campaign Performance'],keywords:['Keywords','Top Keywords — .com Campaign'],changes:['Campaign Changes','Optimization Log'],report:['Summary Report','Performance Summary']};
+function nav(id,el){document.querySelectorAll('.section').forEach(s=>s.classList.remove('on'));document.querySelectorAll('.nav-link').forEach(n=>n.classList.remove('on'));document.getElementById('sec-'+id).classList.add('on');if(el)el.classList.add('on');const t=TITLES[id]||['',''];document.getElementById('page-title').textContent=t[0];document.getElementById('page-sub').textContent=t[1];window.scrollTo(0,0);}
+function mobileNav(el){document.querySelectorAll('.mnav').forEach(n=>n.classList.remove('on'));el.classList.add('on');}
+</script>
+</body>
+</html>
