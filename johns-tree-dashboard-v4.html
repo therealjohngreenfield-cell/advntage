@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>John's Tree Service — Advntage</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&family=DM+Mono&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#3B6FF0;--black:#060608;--dark:#0C0D10;--card:#111318;--border:rgba(255,255,255,0.07);--white:#F0F0F8;--gray:#6B6B80;--light:#A0A0BC;--green:#22D07A;--gold:#F0A832;--red:#F05050;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif;font-size:14px;}
+.sidebar{position:fixed;top:0;left:0;bottom:0;width:220px;background:var(--dark);border-right:1px solid var(--border);padding:24px 0;display:flex;flex-direction:column;z-index:100;}
+.sidebar-brand{padding:0 20px 20px;border-bottom:1px solid var(--border);margin-bottom:16px;}
+.brand{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:800;}
+.brand .ad{color:var(--blue);}
+.badge-green{display:inline-block;margin-top:6px;background:rgba(34,208,122,0.12);color:var(--green);border:1px solid rgba(34,208,122,0.2);border-radius:6px;padding:2px 10px;font-size:0.68rem;font-weight:600;text-transform:uppercase;}
+.nav-label{font-size:0.62rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.12em;padding:0 20px;margin:14px 0 6px;}
+.nav-item{display:block;padding:9px 20px;color:var(--gray);font-size:0.875rem;cursor:pointer;border-left:2px solid transparent;transition:all 0.15s;user-select:none;}
+.nav-item:hover{color:var(--white);background:rgba(255,255,255,0.03);}
+.nav-item.on{color:#7EB3FF;border-left-color:var(--blue);background:rgba(59,111,240,0.08);}
+.nav-item.inv-on{color:var(--green);border-left-color:var(--green);background:rgba(34,208,122,0.08);}
+.sidebar-foot{margin-top:auto;padding:16px 20px;border-top:1px solid var(--border);font-size:0.72rem;color:var(--gray);}
+.signout{margin-top:10px;width:100%;background:none;border:1px solid var(--border);border-radius:8px;padding:9px;color:var(--gray);font-family:'DM Sans',sans-serif;font-size:0.8rem;cursor:pointer;}
+.signout:hover{color:var(--white);}
+.main{margin-left:220px;min-height:100vh;}
+.topbar{background:rgba(6,6,8,0.95);border-bottom:1px solid var(--border);padding:0 28px;height:56px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50;backdrop-filter:blur(16px);}
+.topbar h1{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;}
+.topbar p{font-size:0.72rem;color:var(--gray);margin-top:1px;}
+.period{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:5px 12px;font-size:0.72rem;color:var(--light);white-space:nowrap;}
+.content{padding:24px 28px;}
+.sec{display:none;}
+.sec.on{display:block;}
+.sh{display:flex;align-items:center;gap:10px;margin:20px 0 16px;}
+.sh-line{flex:1;height:1px;background:var(--border);}
+.sh-label{font-family:'Syne',sans-serif;font-size:0.8rem;font-weight:700;white-space:nowrap;}
+.g5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:20px;}
+.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:20px;}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;}
+.card-label{font-size:0.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:6px;}
+.card-val{font-family:'DM Mono',monospace;font-size:1.4rem;font-weight:500;line-height:1;margin-bottom:4px;}
+.card-sub{font-size:0.7rem;color:var(--gray);}
+.tbl-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:16px;}
+.tbl-top{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;}
+.tbl-top h3{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700;}
+.badge{border-radius:6px;padding:3px 10px;font-size:0.68rem;font-weight:600;}
+.b-blue{background:rgba(59,111,240,0.1);color:#7EB3FF;border:1px solid rgba(59,111,240,0.2);}
+.b-meta{background:rgba(24,119,242,0.1);color:#60a5fa;border:1px solid rgba(24,119,242,0.2);}
+.b-green{background:rgba(34,208,122,0.1);color:var(--green);border:1px solid rgba(34,208,122,0.2);}
+.b-purple{background:rgba(168,85,247,0.1);color:#C4B5FD;border:1px solid rgba(168,85,247,0.2);}
+.tbl-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;}
+table{width:100%;border-collapse:collapse;min-width:480px;}
+th{padding:9px 16px;text-align:left;font-size:0.63rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.01);white-space:nowrap;}
+td{padding:11px 16px;font-size:0.84rem;color:var(--light);border-bottom:1px solid var(--border);}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:rgba(255,255,255,0.02);}
+.n{color:var(--white);font-weight:500;}
+.m{font-family:'DM Mono',monospace;font-size:0.8rem;}
+.cg{color:var(--green);font-family:'DM Mono',monospace;font-weight:600;}
+.cx{color:var(--gray);font-family:'DM Mono',monospace;}
+.pill{display:inline-flex;align-items:center;gap:4px;border-radius:100px;padding:2px 9px;font-size:0.68rem;font-weight:600;}
+.pill::before{content:'';width:5px;height:5px;border-radius:50%;background:currentColor;flex-shrink:0;}
+.p-green{background:rgba(34,208,122,0.1);color:var(--green);border:1px solid rgba(34,208,122,0.2);}
+.p-gray{background:rgba(255,255,255,0.04);color:var(--gray);border:1px solid var(--border);}
+.p-gold{background:rgba(240,168,50,0.1);color:var(--gold);border:1px solid rgba(240,168,50,0.2);}
+.banner{background:rgba(34,208,122,0.07);border:1px solid rgba(34,208,122,0.2);border-radius:10px;padding:12px 16px;margin-bottom:20px;font-size:0.83rem;color:var(--light);display:flex;align-items:flex-start;gap:10px;}
+.ch{display:grid;grid-template-columns:150px 1fr;border-bottom:1px solid var(--border);}
+.ch:last-child{border-bottom:none;}
+.ch-l{padding:14px 16px;border-right:1px solid var(--border);font-size:0.76rem;color:var(--gray);}
+.ch-l strong{display:block;color:var(--light);margin-bottom:4px;}
+.ch-l span{font-size:0.67rem;color:#7EB3FF;}
+.ch-r{padding:14px 16px;}
+.ct{display:inline-flex;font-size:0.67rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;padding:2px 9px;border-radius:100px;margin-bottom:7px;}
+.ct-opt{background:rgba(59,111,240,0.1);color:#7EB3FF;border:1px solid rgba(59,111,240,0.2);}
+.ct-setup{background:rgba(34,208,122,0.1);color:var(--green);border:1px solid rgba(34,208,122,0.2);}
+.ch-title{font-size:0.88rem;font-weight:600;color:var(--white);margin-bottom:4px;}
+.ch-desc{font-size:0.8rem;color:var(--gray);line-height:1.65;}
+.ch-desc strong{color:var(--light);}
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px;}
+.tag{font-size:0.67rem;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:5px;padding:2px 8px;color:var(--gray);}
+.report{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;font-size:0.85rem;color:var(--gray);line-height:1.9;}
+.report strong{color:var(--white);}
+.inv-card{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;max-width:640px;}
+.inv-head{padding:24px 28px;border-bottom:1px solid var(--border);}
+.inv-brand{font-family:'Syne',sans-serif;font-size:1.2rem;font-weight:800;margin-bottom:2px;}
+.inv-brand span{color:var(--blue);}
+.inv-sub{font-size:0.72rem;color:var(--gray);margin-bottom:20px;}
+.inv-meta{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.inv-meta label{font-size:0.65rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.1em;display:block;margin-bottom:4px;}
+.inv-meta p{font-size:0.875rem;color:var(--white);font-weight:500;}
+.inv-meta small{font-size:0.78rem;color:var(--gray);display:block;margin-top:2px;}
+.inv-row-head{display:grid;grid-template-columns:1fr 80px 90px;padding:9px 28px;font-size:0.63rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.1em;border-bottom:1px solid var(--border);background:rgba(255,255,255,0.01);}
+.inv-row{display:grid;grid-template-columns:1fr 80px 90px;padding:18px 28px;border-bottom:1px solid var(--border);}
+.inv-row-name{font-size:0.875rem;font-weight:600;color:var(--white);margin-bottom:3px;}
+.inv-row-desc{font-size:0.75rem;color:var(--gray);}
+.inv-row-qty{font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--light);padding-top:2px;}
+.inv-row-amt{font-family:'DM Mono',monospace;font-size:0.85rem;color:var(--white);font-weight:500;text-align:right;padding-top:2px;}
+.inv-total{padding:16px 28px;display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,0.02);border-top:1px solid var(--border);}
+.inv-total-label{font-size:0.85rem;font-weight:600;color:var(--light);}
+.inv-total-val{font-family:'DM Mono',monospace;font-size:1.4rem;font-weight:700;color:var(--white);}
+.pay-methods{padding:20px 28px;border-top:1px solid var(--border);}
+.pay-label{font-size:0.72rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:14px;}
+.pay-options{display:flex;flex-direction:column;gap:10px;}
+.pay-opt{display:flex;align-items:center;justify-content:space-between;border-radius:10px;padding:14px 18px;text-decoration:none;transition:background 0.2s;}
+.pay-opt-left{display:flex;align-items:center;gap:12px;}
+.pay-opt-icon{font-size:1.3rem;flex-shrink:0;}
+.pay-opt-name{font-size:0.88rem;font-weight:600;color:var(--white);}
+.pay-opt-desc{font-size:0.72rem;color:var(--gray);margin-top:1px;}
+.pay-opt-arrow{font-family:'DM Mono',monospace;font-size:0.88rem;font-weight:600;white-space:nowrap;}
+.mob-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:var(--dark);border-top:1px solid var(--border);z-index:100;padding:8px 0 env(safe-area-inset-bottom,8px);}
+.mob-nav-inner{display:flex;justify-content:space-around;}
+.mn{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 8px;cursor:pointer;border-radius:8px;min-width:48px;}
+.mn.on{background:rgba(59,111,240,0.12);}
+.mn-icon{font-size:1.1rem;line-height:1;}
+.mn-label{font-size:0.56rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.06em;}
+.mn.on .mn-label{color:#7EB3FF;}
+@media(max-width:768px){
+  .sidebar{display:none;}
+  .main{margin-left:0;padding-bottom:72px;}
+  .topbar{padding:0 16px;height:52px;}
+  .topbar p{display:none;}
+  .period{display:none;}
+  .content{padding:16px;}
+  .g5,.g4{grid-template-columns:repeat(2,1fr);}
+  .card-val{font-size:1.15rem;}
+  .ch{grid-template-columns:1fr;}
+  .ch-l{border-right:none;border-bottom:1px solid var(--border);}
+  .mob-nav{display:block;}
+  .inv-card{max-width:100%;}
+  .inv-meta{grid-template-columns:1fr;}
+  .inv-row-head,.inv-row{grid-template-columns:1fr 90px;}
+  .inv-row-qty{display:none;}
+  .inv-row-head div:nth-child(2){display:none;}
+}
+</style>
+</head>
+<body>
+<aside class="sidebar">
+  <div class="sidebar-brand">
+    <div class="brand"><span class="ad">Ad</span>vntage</div>
+    <div class="badge-green">John's Tree Service</div>
+  </div>
+  <div class="nav-label">Overview</div>
+  <div class="nav-item on" data-sec="overview">◈ Dashboard</div>
+  <div class="nav-label">Google Ads</div>
+  <div class="nav-item" data-sec="google">G Campaigns</div>
+  <div class="nav-item" data-sec="keywords">⌇ Keywords</div>
+  <div class="nav-label">Meta Ads</div>
+  <div class="nav-item" data-sec="meta">f Campaigns</div>
+  <div class="nav-label">Local Service Ads</div>
+  <div class="nav-item" data-sec="lsa">📋 LSA Leads</div>
+  <div class="nav-label">Billing</div>
+  <div class="nav-item" data-sec="invoice" data-cls="inv-on">💳 Invoice &amp; Payment</div>
+  <div class="nav-label">Activity</div>
+  <div class="nav-item" data-sec="changes">⚡ Changes</div>
+  <div class="nav-item" data-sec="report">≡ Report</div>
+  <div class="sidebar-foot">
+    Data updated<br><strong style="color:var(--light)">March 2026 · Full Month</strong>
+    <button class="signout" id="signout-btn">Sign Out</button>
+  </div>
+</aside>
+
+<main class="main">
+  <div class="topbar">
+    <div><h1 id="pt">Dashboard Overview</h1><p id="ps">Google Ads + Meta Ads + LSA · March 2026</p></div>
+    <div class="period">March 2026</div>
+  </div>
+  <div class="content">
+
+    <div id="sec-overview" class="sec on">
+      <div class="banner">✅ <span><strong style="color:var(--green)">Strong March:</strong> 33 Google conversions · 22 Meta leads · 16 LSA charged leads · <strong style="color:var(--green)">71 total leads across all channels.</strong></span></div>
+      <div class="sh"><div class="sh-label" style="color:#7EB3FF">Google Ads</div><div class="sh-line"></div></div>
+      <div class="g5">
+        <div class="card"><div class="card-label">Impressions</div><div class="card-val" style="color:#7EB3FF">7,945</div><div class="card-sub">4.67% CTR</div></div>
+        <div class="card"><div class="card-label">Clicks</div><div class="card-val" style="color:#7EB3FF">371</div><div class="card-sub">$2.26 avg CPC</div></div>
+        <div class="card"><div class="card-label">Spend</div><div class="card-val" style="color:#7EB3FF">$837.70</div><div class="card-sub">2 campaigns</div></div>
+        <div class="card"><div class="card-label">Conversions</div><div class="card-val" style="color:var(--green)">33</div><div class="card-sub">tracked leads</div></div>
+        <div class="card"><div class="card-label">Cost / Lead</div><div class="card-val" style="color:#7EB3FF">$25.38</div><div class="card-sub">blended</div></div>
+      </div>
+      <div class="sh" style="margin-top:4px;"><div class="sh-label" style="color:#60a5fa">Meta Ads</div><div class="sh-line"></div></div>
+      <div class="g5">
+        <div class="card"><div class="card-label">Reach</div><div class="card-val" style="color:#60a5fa">40,157</div><div class="card-sub">75,217 impr.</div></div>
+        <div class="card"><div class="card-label">Clicks</div><div class="card-val" style="color:#60a5fa">1,462</div><div class="card-sub">1.94% CTR</div></div>
+        <div class="card"><div class="card-label">Spend</div><div class="card-val" style="color:#60a5fa">$972.32</div><div class="card-sub">6 campaigns</div></div>
+        <div class="card"><div class="card-label">Leads</div><div class="card-val" style="color:var(--green)">22</div><div class="card-sub">form submissions</div></div>
+        <div class="card"><div class="card-label">Cost / Lead</div><div class="card-val" style="color:#60a5fa">$44.20</div><div class="card-sub">avg CPL</div></div>
+      </div>
+      <div class="sh" style="margin-top:4px;"><div class="sh-label" style="color:var(--green)">📋 Local Service Ads</div><div class="sh-line"></div></div>
+      <div class="g4">
+        <div class="card"><div class="card-label">Total Leads</div><div class="card-val" style="color:var(--green)">29</div><div class="card-sub">Recent period</div></div>
+        <div class="card"><div class="card-label">Charged</div><div class="card-val" style="color:#7EB3FF">16</div><div class="card-sub">Billed by Google</div></div>
+        <div class="card"><div class="card-label">In Review</div><div class="card-val" style="color:var(--gold)">8</div><div class="card-sub">Pending review</div></div>
+        <div class="card"><div class="card-label">Top Job</div><div class="card-val" style="font-size:0.95rem;padding-top:6px;">Tree Removal</div><div class="card-sub">10 of 29 leads</div></div>
+      </div>
+      <div class="sh" style="margin-top:4px;"><div class="sh-label" style="color:var(--green)">💳 Billing</div><div class="sh-line"></div><a href="#" id="inv-link" style="font-size:0.75rem;color:#7EB3FF;text-decoration:none;white-space:nowrap;">View invoice →</a></div>
+      <div style="background:var(--card);border:1px solid rgba(240,168,50,0.25);border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;">
+        <div><div style="font-size:0.7rem;color:var(--gray);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:4px;">Invoice Due</div><div style="font-size:1rem;font-weight:600;">March 2026 — Management Fee</div><div style="font-size:0.8rem;color:var(--gray);margin-top:2px;">Google Ads · Meta Ads · Management</div></div>
+        <div style="display:flex;align-items:center;gap:16px;flex-shrink:0;"><div style="text-align:right;"><div style="font-size:0.7rem;color:var(--gray);">Amount due</div><div style="font-family:'DM Mono',monospace;font-size:1.3rem;font-weight:700;color:var(--gold);">$400.00</div></div><a href="#" id="inv-btn" style="display:inline-flex;align-items:center;background:var(--blue);color:white;border-radius:10px;padding:10px 18px;font-size:0.85rem;font-weight:600;text-decoration:none;">View Invoice →</a></div>
+      </div>
+    </div>
+
+    <div id="sec-google" class="sec">
+      <div class="tbl-card">
+        <div class="tbl-top"><h3>Google Campaigns — March 2026</h3><span class="badge b-blue">2 active</span></div>
+        <div class="tbl-scroll"><table>
+          <thead><tr><th>Campaign</th><th>Type</th><th>Impr.</th><th>Clicks</th><th>CTR</th><th>Spend</th><th>CPC</th><th>Conv.</th><th>CPL</th></tr></thead>
+          <tbody>
+            <tr><td class="n">Tree Services - Main Search 2026</td><td class="cx" style="font-size:0.72rem;">Search</td><td class="m">3,721</td><td class="m">219</td><td class="m">5.89%</td><td class="m">$581.26</td><td class="m">$2.65</td><td class="cg">20</td><td class="m">$29.06</td></tr>
+            <tr><td class="n">Leads-Performance Max-2</td><td class="cx" style="font-size:0.72rem;">PMax</td><td class="m">4,224</td><td class="m">152</td><td class="m">3.60%</td><td class="m">$256.44</td><td class="m">$1.69</td><td class="cg">13</td><td class="m">$19.73</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <div id="sec-keywords" class="sec">
+      <div class="tbl-card">
+        <div class="tbl-top"><h3>Top Keywords — March 2026</h3><span class="badge b-blue">by spend</span></div>
+        <div class="tbl-scroll"><table>
+          <thead><tr><th>Keyword</th><th>Match</th><th>Impr.</th><th>Clicks</th><th>Spend</th><th>CPC</th><th>Conv.</th><th>QS</th></tr></thead>
+          <tbody>
+            <tr><td class="n">tree service near me</td><td class="cx" style="font-size:0.7rem;">broad</td><td class="m">1,197</td><td class="m">80</td><td class="m">$182.66</td><td class="m">$2.28</td><td class="cg">10</td><td style="color:var(--red);font-family:'DM Mono',monospace;font-size:0.8rem;">4/10</td></tr>
+            <tr><td class="n">24 hour tree service near me</td><td class="cx" style="font-size:0.7rem;">broad</td><td class="m">482</td><td class="m">24</td><td class="m">$75.70</td><td class="m">$3.15</td><td class="cg">4</td><td class="cx">—</td></tr>
+            <tr><td class="n">tree service binghamton</td><td class="cx" style="font-size:0.7rem;">phrase</td><td class="m">86</td><td class="m">8</td><td class="m">$62.92</td><td class="m">$7.87</td><td class="cg">3</td><td style="color:var(--gold);font-family:'DM Mono',monospace;font-size:0.8rem;">5/10</td></tr>
+            <tr><td class="n">tree removal binghamton ny</td><td class="cx" style="font-size:0.7rem;">phrase</td><td class="m">135</td><td class="m">11</td><td class="m">$45.80</td><td class="m">$4.16</td><td class="cx">0</td><td style="color:var(--gold);font-family:'DM Mono',monospace;font-size:0.8rem;">6/10</td></tr>
+            <tr><td class="n">tree care maintenance</td><td class="cx" style="font-size:0.7rem;">phrase</td><td class="m">298</td><td class="m">14</td><td class="m">$34.85</td><td class="m">$2.49</td><td class="cg">1</td><td class="cx">—</td></tr>
+            <tr><td class="n">tree service contractors</td><td class="cx" style="font-size:0.7rem;">phrase</td><td class="m">176</td><td class="m">11</td><td class="m">$27.30</td><td class="m">$2.48</td><td class="cx">0</td><td class="cx">—</td></tr>
+            <tr><td class="n">tree maintenance services</td><td class="cx" style="font-size:0.7rem;">phrase</td><td class="m">167</td><td class="m">14</td><td class="m">$25.57</td><td class="m">$1.83</td><td class="cx">0</td><td class="cx">—</td></tr>
+            <tr><td class="n">tree cutting service near me</td><td class="cx" style="font-size:0.7rem;">phrase</td><td class="m">129</td><td class="m">8</td><td class="m">$24.03</td><td class="m">$3.00</td><td class="cx">0</td><td style="color:var(--red);font-family:'DM Mono',monospace;font-size:0.8rem;">2/10</td></tr>
+            <tr><td class="n">lawn and landscaping service</td><td class="cx" style="font-size:0.7rem;">broad</td><td class="m">242</td><td class="m">11</td><td class="m">$20.11</td><td class="m">$1.83</td><td class="cx">0</td><td class="cx">—</td></tr>
+            <tr><td class="n">tree care services</td><td class="cx" style="font-size:0.7rem;">phrase</td><td class="m">144</td><td class="m">10</td><td class="m">$19.57</td><td class="m">$1.96</td><td class="cx">0</td><td class="cx">—</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <div id="sec-meta" class="sec">
+      <div class="tbl-card">
+        <div class="tbl-top"><h3>Meta Campaigns — March 2026</h3><span class="badge b-meta">6 campaigns</span></div>
+        <div class="tbl-scroll"><table>
+          <thead><tr><th>Campaign</th><th>Impr.</th><th>Reach</th><th>Clicks</th><th>Spend</th><th>CPC</th><th>Leads</th><th>CPL</th></tr></thead>
+          <tbody>
+            <tr><td class="n">Spring 10% Off Campaign</td><td class="m">32,803</td><td class="m">9,960</td><td class="m">761</td><td class="m">$597.16</td><td class="m">$0.78</td><td class="cg">11</td><td class="m">$54.29</td></tr>
+            <tr><td class="n">Cortland Lead Campaign</td><td class="m">12,244</td><td class="m">5,692</td><td class="m">346</td><td class="m">$172.94</td><td class="m">$0.50</td><td class="cg">8</td><td class="m">$21.62</td></tr>
+            <tr><td class="n">Cortland Lead - Retarget</td><td class="m">4,439</td><td class="m">2,846</td><td class="m">103</td><td class="m">$58.19</td><td class="m">$0.56</td><td class="cg">2</td><td class="m">$29.10</td></tr>
+            <tr><td class="n">Likes &amp; Follows Campaign</td><td class="m">4,972</td><td class="m">2,092</td><td class="m">137</td><td class="m">$51.29</td><td class="m">$0.37</td><td class="cx">—</td><td class="cx">—</td></tr>
+            <tr><td class="n">New Awareness Campaign</td><td class="m">17,722</td><td class="m">17,722</td><td class="m">14</td><td class="m">$43.11</td><td class="m">$3.08</td><td class="cx">—</td><td class="cx">—</td></tr>
+            <tr><td class="n">Lead Form Campaign</td><td class="m">3,037</td><td class="m">1,845</td><td class="m">101</td><td class="m">$49.63</td><td class="m">$0.49</td><td class="cg">1</td><td class="m">$49.63</td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <div id="sec-lsa" class="sec">
+      <div class="g4" style="margin-bottom:16px;">
+        <div class="card"><div class="card-label">Total Leads</div><div class="card-val" style="color:var(--green)">29</div><div class="card-sub">Recent period</div></div>
+        <div class="card"><div class="card-label">Charged</div><div class="card-val" style="color:#7EB3FF">16</div><div class="card-sub">Billed</div></div>
+        <div class="card"><div class="card-label">In Review</div><div class="card-val" style="color:var(--gold)">8</div><div class="card-sub">Pending</div></div>
+        <div class="card"><div class="card-label">Not Charged</div><div class="card-val" style="color:var(--gray)">5</div><div class="card-sub">Disputed</div></div>
+      </div>
+      <div class="tbl-card">
+        <div class="tbl-top"><h3>LSA Lead Inbox</h3><span class="badge b-green">29 leads</span></div>
+        <div class="tbl-scroll"><table>
+          <thead><tr><th>Contact</th><th>Job Type</th><th>Location</th><th>Type</th><th>Date</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td class="n m" style="font-size:0.78rem;">(607) 371-0679</td><td>Tree removal</td><td class="cx">Norwich</td><td class="cx" style="font-size:0.72rem;">Phone</td><td class="m cx" style="font-size:0.78rem;">Apr 5</td><td><span class="pill p-green">Charged</span></td></tr>
+            <tr><td class="n m" style="font-size:0.78rem;">(914) 319-8052</td><td>Tree removal</td><td class="cx">Deposit</td><td class="cx" style="font-size:0.72rem;">Phone</td><td class="m cx" style="font-size:0.78rem;">Apr 5</td><td><span class="pill p-green">Charged</span></td></tr>
+            <tr><td class="n m" style="font-size:0.78rem;">Message</td><td>Tree removal</td><td class="cx">Endicott</td><td class="cx" style="font-size:0.72rem;">Message</td><td class="m cx" style="font-size:0.78rem;">Apr 4</td><td><span class="pill p-green">Charged</span></td></tr>
+            <tr><td class="n m" style="font-size:0.78rem;">Message</td><td>Tree removal</td><td class="cx">Tioga County</td><td class="cx" style="font-size:0.72rem;">Message</td><td class="m cx" style="font-size:0.78rem;">Apr 4</td><td><span class="pill p-green">Charged</span></td></tr>
+            <tr><td class="n m" style="font-size:0.78rem;">Message</td><td>Stump removal</td><td class="cx">Marathon</td><td class="cx" style="font-size:0.72rem;">Message</td><td class="m cx" style="font-size:0.78rem;">Apr 4</td><td><span class="pill p-green">Charged</span></td></tr>
+            <tr><td class="n m" style="font-size:0.78rem;">(267) 421-2036</td><td>Tree removal</td><td class="cx">Vestal</td><td class="cx" style="font-size:0.72rem;">Phone</td><td class="m cx" style="font-size:0.78rem;">Apr 3</td><td><span class="pill p-green">Charged</span></td></tr>
+            <tr><td class="n m" style="font-size:0.78rem;">(607) 343-1019</td><td>—</td><td class="cx">Johnson City</td><td class="cx" style="font-size:0.72rem;">Phone</td><td class="m cx" style="font-size:0.78rem;">Apr 2</td><td><span class="pill p-green">Charged</span></td></tr>
+            <tr><td class="n m" style="font-size:0.78rem;">(607) 372-0211</td><td>Tree removal</td><td class="cx">Binghamton</td><td class="cx" style="font-size:0.72rem;">Phone</td><td class="m cx" style="font-size:0.78rem;">Apr 1</td><td><span class="pill p-green">Charged</span></td></tr>
+            <tr><td class="n m" style="font-size:0.78rem;">Message</td><td>Stump removal</td><td class="cx">Endicott</td><td class="cx" style="font-size:0.72rem;">Message</td><td class="m cx" style="font-size:0.78rem;">Apr 1</td><td><span class="pill p-green">Charged</span></td></tr>
+            <tr><td class="n m" style="font-size:0.78rem;">(607) 761-4165</td><td>—</td><td class="cx">Owego</td><td class="cx" style="font-size:0.72rem;">Phone</td><td class="m cx" style="font-size:0.78rem;">Mar 31</td><td><span class="pill p-green">Charged</span></td></tr>
+            <tr><td class="n m" style="font-size:0.78rem;">(845) 507-2775</td><td>—</td><td class="cx">Binghamton</td><td class="cx" style="font-size:0.72rem;">Phone</td><td class="m cx" style="font-size:0.78rem;">Mar 31</td><td><span class="pill p-green">Charged</span></td></tr>
+            <tr><td class="n m" style="font-size:0.78rem;">(347) 698-0482</td><td>Tree removal</td><td class="cx">Endicott</td><td class="cx" style="font-size:0.72rem;">Phone</td><td class="m cx" style="font-size:0.78rem;">Apr 6</td><td><span class="pill p-gold">In review</span></td></tr>
+            <tr><td class="n m" style="font-size:0.78rem;">(516) 765-5756</td><td>Tree removal</td><td class="cx">Johnson City</td><td class="cx" style="font-size:0.72rem;">Phone</td><td class="m cx" style="font-size:0.78rem;">Apr 6</td><td><span class="pill p-gold">In review</span></td></tr>
+            <tr><td class="n m" style="font-size:0.78rem;">(607) 342-3240</td><td>—</td><td class="cx">Cortland</td><td class="cx" style="font-size:0.72rem;">Phone</td><td class="m cx" style="font-size:0.78rem;">Apr 6</td><td><span class="pill p-gold">In review</span></td></tr>
+            <tr><td class="n m" style="font-size:0.78rem;">(607) 321-7818</td><td>Driveway landscaping</td><td class="cx">Ithaca</td><td class="cx" style="font-size:0.72rem;">Phone</td><td class="m cx" style="font-size:0.78rem;">Apr 6</td><td><span class="pill p-gold">In review</span></td></tr>
+            <tr><td class="n m" style="font-size:0.78rem;">(607) 752-6699</td><td>—</td><td class="cx">Binghamton</td><td class="cx" style="font-size:0.72rem;">Phone</td><td class="m cx" style="font-size:0.78rem;">Apr 4</td><td><span class="pill p-gray">Not charged</span></td></tr>
+            <tr><td class="n m" style="font-size:0.78rem;">(607) 240-1768</td><td>Tree removal</td><td class="cx">Maine</td><td class="cx" style="font-size:0.72rem;">Phone</td><td class="m cx" style="font-size:0.78rem;">Apr 6</td><td><span class="pill p-gray">Not charged</span></td></tr>
+          </tbody>
+        </table></div>
+      </div>
+    </div>
+
+    <div id="sec-invoice" class="sec">
+      <div class="inv-card">
+        <div class="inv-head">
+          <div class="inv-brand"><span>Ad</span>vntage</div>
+          <div class="inv-sub">Paid Media Agency · advntage.com</div>
+          <div class="inv-meta">
+            <div><label>Billed To</label><p>John's Tree Service &amp; Landscaping</p><small>Binghamton, NY</small></div>
+            <div><label>Invoice Details</label><p class="m cx">Invoice #JTS-2026-03</p><small>Period: March 2026</small><div style="margin-top:6px;"><span class="pill p-gold">Unpaid</span></div></div>
+          </div>
+        </div>
+        <div class="inv-row-head"><div>Description</div><div>Qty</div><div style="text-align:right;">Amount</div></div>
+        <div class="inv-row">
+          <div><div class="inv-row-name">Google Ads + Meta Ads Management</div><div class="inv-row-desc">Campaign management, optimization &amp; reporting — March 2026<br>Google Search · PMax · Meta Facebook &amp; Instagram</div></div>
+          <div class="inv-row-qty">1 mo</div>
+          <div class="inv-row-amt">$400.00</div>
+        </div>
+        <div class="inv-total"><div class="inv-total-label">Total Due</div><div class="inv-total-val">$400.00</div></div>
+        <div class="pay-methods">
+          <div class="pay-label">Choose a payment method</div>
+          <div class="pay-options">
+            <a href="https://buy.stripe.com/aFa8wR2F3bMn7D80Cx9sk01" target="_blank" class="pay-opt" style="background:rgba(59,111,240,0.08);border:1px solid rgba(59,111,240,0.2);" onmouseover="this.style.background='rgba(59,111,240,0.14)'" onmouseout="this.style.background='rgba(59,111,240,0.08)'">
+              <div class="pay-opt-left"><span class="pay-opt-icon">💳</span><div><div class="pay-opt-name">Credit / Debit Card</div><div class="pay-opt-desc">Secure checkout via Stripe</div></div></div>
+              <span class="pay-opt-arrow" style="color:#7EB3FF;">$400.00 →</span>
+            </a>
+            <a href="https://venmo.com/john-greenfield-3" target="_blank" class="pay-opt" style="background:rgba(0,132,209,0.08);border:1px solid rgba(0,132,209,0.2);" onmouseover="this.style.background='rgba(0,132,209,0.14)'" onmouseout="this.style.background='rgba(0,132,209,0.08)'">
+              <div class="pay-opt-left"><span class="pay-opt-icon">📱</span><div><div class="pay-opt-name">Venmo</div><div class="pay-opt-desc">@john-greenfield-3</div></div></div>
+              <span class="pay-opt-arrow" style="color:#0084D1;">Open →</span>
+            </a>
+            <a href="https://paypal.me/johngreenfield28" target="_blank" class="pay-opt" style="background:rgba(0,112,186,0.08);border:1px solid rgba(0,112,186,0.2);" onmouseover="this.style.background='rgba(0,112,186,0.14)'" onmouseout="this.style.background='rgba(0,112,186,0.08)'">
+              <div class="pay-opt-left"><span class="pay-opt-icon">🅿️</span><div><div class="pay-opt-name">PayPal</div><div class="pay-opt-desc">paypal.me/johngreenfield28</div></div></div>
+              <span class="pay-opt-arrow" style="color:#009CDE;">Open →</span>
+            </a>
+            <div class="pay-opt" style="background:rgba(34,208,122,0.06);border:1px solid rgba(34,208,122,0.15);">
+              <div class="pay-opt-left"><span class="pay-opt-icon">💵</span><div><div class="pay-opt-name">Cash</div><div class="pay-opt-desc">Contact us to arrange · <a href="mailto:info@advntage.com" style="color:#7EB3FF;text-decoration:none;">info@advntage.com</a></div></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sec-changes" class="sec">
+      <div class="tbl-card">
+        <div class="tbl-top"><h3>Campaign Changes</h3><span class="badge b-purple">3 recent</span></div>
+        <div>
+          <div class="ch"><div class="ch-l"><strong>Mar 28, 2026</strong><span>By Advntage</span></div><div class="ch-r"><div class="ct ct-opt">Optimization</div><div class="ch-title">22 Low-Performing Keywords Paused</div><div class="ch-desc">Paused <strong>22 keywords</strong> with QS 1-3, zero impressions, or irrelevant terms to concentrate budget on top converters.</div><div class="tags"><span class="tag">Keywords</span><span class="tag">QS</span><span class="tag">Cost Reduction</span></div></div></div>
+          <div class="ch"><div class="ch-l"><strong>Mar 28, 2026</strong><span>By Advntage</span></div><div class="ch-r"><div class="ct ct-opt">Bid Cap</div><div class="ch-title">Max CPC Caps Applied</div><div class="ch-desc">Set <strong>$8.00 max CPC</strong> on tree service binghamton, tree removal binghamton ny, and 24 hour tree service near me.</div><div class="tags"><span class="tag">Bid Caps</span><span class="tag">Cost Reduction</span></div></div></div>
+          <div class="ch"><div class="ch-l"><strong>Mar 22, 2026</strong><span>By Advntage</span></div><div class="ch-r"><div class="ct ct-setup">Setup</div><div class="ch-title">Spring 10% Off Meta Campaign Launched</div><div class="ch-desc">Seasonal Facebook campaign promoting a <strong>10% spring discount</strong> targeting homeowners 25-65 in Cortland/Binghamton.</div><div class="tags"><span class="tag">Meta Ads</span><span class="tag">Spring Promo</span></div></div></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="sec-report" class="sec">
+      <div class="report">
+        <strong style="font-family:'Syne',sans-serif;font-size:1rem;">John's Tree Service — March 2026 Full Month</strong><br><br>
+        <strong style="color:#7EB3FF">Google Ads</strong><br>
+        7,945 impressions · 371 clicks · <strong>$837.70 spend</strong> · <strong style="color:var(--green)">33 conversions</strong> · $25.38/lead<br>
+        Search: 20 conv · $29.06/lead &nbsp;|&nbsp; PMax: 13 conv · $19.73/lead<br>
+        Top keyword: "tree service near me" — 10 conversions at $2.28 CPC<br><br>
+        <strong style="color:#60a5fa">Meta Ads</strong><br>
+        75,217 impressions · 40,157 reach · 1,462 clicks · <strong>$972.32 spend</strong> · <strong style="color:var(--green)">22 leads</strong> · $44.20/lead<br>
+        Best: Cortland Lead Campaign — 8 leads at $21.62/lead<br><br>
+        <strong style="color:var(--green)">Local Service Ads</strong><br>
+        29 total leads · 16 charged · 8 in review · 5 not charged<br>
+        Top job: Tree Removal · Top areas: Binghamton, Johnson City, Endicott<br><br>
+        <strong>Combined</strong><br>
+        Total spend: <strong style="color:#7EB3FF">$1,810.02</strong> · Total leads all channels: <strong style="color:var(--green)">71 in March 2026</strong>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<nav class="mob-nav">
+  <div class="mob-nav-inner">
+    <div class="mn on" data-sec="overview"><div class="mn-icon">◈</div><div class="mn-label">Home</div></div>
+    <div class="mn" data-sec="google"><div class="mn-icon">G</div><div class="mn-label">Google</div></div>
+    <div class="mn" data-sec="meta"><div class="mn-icon">f</div><div class="mn-label">Meta</div></div>
+    <div class="mn" data-sec="invoice"><div class="mn-icon">💳</div><div class="mn-label">Invoice</div></div>
+    <div class="mn" data-sec="report"><div class="mn-icon">≡</div><div class="mn-label">Report</div></div>
+  </div>
+</nav>
+
+<script>
+var TITLES = {
+  overview: ['Dashboard Overview', 'Google Ads + Meta Ads + LSA · March 2026'],
+  google:   ['Google Campaigns', 'March 2026 Full Month'],
+  keywords: ['Keywords', 'Top Keywords by Spend — March 2026'],
+  meta:     ['Meta Campaigns', 'Facebook & Instagram · March 2026'],
+  lsa:      ['Local Service Ads', 'Lead Inbox'],
+  invoice:  ['Invoice & Payment', 'March 2026'],
+  changes:  ['Campaign Changes', 'Optimization Log'],
+  report:   ['Summary Report', 'March 2026 Full Month']
+};
+
+function goTo(id, isInvoice) {
+  document.querySelectorAll('.sec').forEach(function(s) { s.classList.remove('on'); });
+  document.querySelectorAll('.nav-item').forEach(function(n) { n.classList.remove('on'); n.classList.remove('inv-on'); });
+  document.querySelectorAll('.mn').forEach(function(n) { n.classList.remove('on'); });
+  var sec = document.getElementById('sec-' + id);
+  if (sec) sec.classList.add('on');
+  document.querySelectorAll('[data-sec="' + id + '"]').forEach(function(el) {
+    el.classList.add(isInvoice ? 'inv-on' : 'on');
+  });
+  var t = TITLES[id] || ['', ''];
+  document.getElementById('pt').textContent = t[0];
+  document.getElementById('ps').textContent = t[1];
+  window.scrollTo(0, 0);
+}
+
+// Sidebar nav
+document.querySelectorAll('.nav-item').forEach(function(el) {
+  el.addEventListener('click', function() {
+    var sec = this.getAttribute('data-sec');
+    var cls = this.getAttribute('data-cls');
+    goTo(sec, cls === 'inv-on');
+  });
+});
+
+// Mobile nav
+document.querySelectorAll('.mn').forEach(function(el) {
+  el.addEventListener('click', function() {
+    var sec = this.getAttribute('data-sec');
+    goTo(sec, sec === 'invoice');
+  });
+});
+
+// Invoice links in overview
+var invLink = document.getElementById('inv-link');
+if (invLink) invLink.addEventListener('click', function(e) { e.preventDefault(); goTo('invoice', true); });
+var invBtn = document.getElementById('inv-btn');
+if (invBtn) invBtn.addEventListener('click', function(e) { e.preventDefault(); goTo('invoice', true); });
+
+// Sign out
+document.getElementById('signout-btn').addEventListener('click', function() {
+  window.location.href = 'dashboard.html';
+});
+</script>
+</body>
+</html>
