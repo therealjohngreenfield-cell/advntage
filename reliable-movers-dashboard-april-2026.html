@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reliable Movers LLC — April 2026 | Advntage</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background: #0f1419; 
+            color: #e0e0e0; 
+            line-height: 1.6; 
+        }
+        .wrapper { display: flex; min-height: 100vh; }
+        .nav-side { 
+            width: 240px; 
+            background: #1a1f2a; 
+            padding: 30px 20px; 
+            border-right: 1px solid #2a3040; 
+            overflow-y: auto; 
+            position: sticky; 
+            top: 0; 
+            height: 100vh; 
+        }
+        .logo { 
+            font-size: 16px; 
+            font-weight: 700; 
+            color: #64b5f6; 
+            margin-bottom: 30px; 
+            text-decoration: none;
+        }
+        .client-badge {
+            background: #0d3f1a;
+            color: #4ade80;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        .nav-section {
+            font-size: 11px;
+            color: #5a6a80;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0 12px;
+            margin: 20px 0 8px;
+            font-weight: 600;
+        }
+        .nav-item { 
+            padding: 12px; 
+            margin: 4px 0; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-size: 13px; 
+            color: #a0a0b0; 
+            transition: all 0.3s; 
+        }
+        .nav-item:hover { 
+            background: #2a3040; 
+            color: #64b5f6; 
+        }
+        .nav-item.on { 
+            background: #2a4a7a; 
+            color: #64b5f6; 
+            font-weight: 600; 
+        }
+        main { flex: 1; padding: 40px; }
+        .page-header { 
+            margin-bottom: 30px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-start; 
+            border-bottom: 1px solid #2a3040; 
+            padding-bottom: 20px; 
+        }
+        .ph-left h1 { 
+            font-size: 32px; 
+            font-weight: 700; 
+            color: #ffffff; 
+            margin-bottom: 8px; 
+        }
+        .ph-sub { 
+            font-size: 13px; 
+            color: #a0a0b0; 
+        }
+        .ph-right { text-align: right; }
+        .data-updated { 
+            font-size: 12px; 
+            color: #a0a0b0; 
+            margin-bottom: 4px; 
+        }
+        .period-label { 
+            font-size: 16px; 
+            font-weight: 600; 
+            color: #ffffff; 
+            margin-bottom: 8px; 
+        }
+        .summary-banner {
+            background: #0d3f1a;
+            border: 1px solid #4ade80;
+            color: #4ade80;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        .summary-banner::before {
+            content: "✅ ";
+            margin-right: 8px;
+        }
+        h2 { 
+            font-size: 18px; 
+            font-weight: 700; 
+            color: #ffffff; 
+            margin: 30px 0 20px 0; 
+        }
+        h3 { 
+            font-size: 12px; 
+            font-weight: 600; 
+            color: #64b5f6; 
+            margin: 20px 0 15px 0; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+        }
+        .sec { display: none; }
+        .sec.on { display: block; }
+        
+        /* Metric Cards */
+        .metrics-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .metric-card {
+            background: #1a1f2a;
+            border: 1px solid #2a3040;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        .metric-label {
+            font-size: 10px;
+            color: #a0a0b0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .metric-value {
+            font-size: 20px;
+            color: #64b5f6;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .metric-value.green {
+            color: #4ade80;
+        }
+        .metric-sub {
+            font-size: 10px;
+            color: #a0a0b0;
+        }
+        
+        /* Tables */
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 20px 0; 
+            background: #1a1f2a; 
+            border-radius: 6px; 
+            overflow: hidden; 
+        }
+        th { 
+            background: #2d5016; 
+            padding: 12px; 
+            text-align: left; 
+            font-size: 11px; 
+            font-weight: 700; 
+            color: #ffffff; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+        }
+        td { 
+            padding: 12px; 
+            border-top: 1px solid #2a3040; 
+            font-size: 12px; 
+            text-align: center;
+        }
+        td:first-child {
+            text-align: left;
+        }
+        tr:hover { background: #252d3a; }
+        
+        /* Summary Box */
+        .summary-box {
+            background: #1a1f2a;
+            border: 1px solid #2a3040;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .summary-text {
+            font-size: 11px;
+            color: #a0a0b0;
+            line-height: 1.8;
+        }
+        .summary-text b {
+            color: #e0e0e0;
+        }
+        .summary-text strong {
+            color: #64b5f6;
+        }
+        
+        .mob-nav { display: none; }
+        
+        @media (max-width: 768px) {
+            .wrapper { flex-direction: column; }
+            .nav-side { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid #2a3040; padding: 15px; display: flex; gap: 10px; overflow-x: auto; }
+            .nav-item { padding: 8px 12px; font-size: 12px; }
+            main { padding: 20px; padding-bottom: 70px; }
+            .mob-nav { display: flex; position: fixed; bottom: 0; left: 0; right: 0; background: #1a1f2a; border-top: 1px solid #2a3040; height: 56px; z-index: 1000; }
+            .mob-nav-inner { display: flex; justify-content: space-around; align-items: center; height: 100%; }
+            .mn { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; color: #a0a0b0; font-size: 12px; }
+            .mn.on { color: #64b5f6; }
+            .mn-icon { font-size: 20px; margin-bottom: 2px; }
+            .mn-label { font-size: 10px; }
+            .page-header { flex-direction: column; }
+            .ph-right { text-align: left; margin-top: 15px; }
+            .metrics-row { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="nav-side">
+            <div class="logo">Advntage</div>
+            <div class="client-badge">RELIABLE MOVERS LLC</div>
+            
+            <div class="nav-section">OVERVIEW</div>
+            <div class="nav-item on" onclick="go('overview', this)">📊 Dashboard</div>
+            
+            <div class="nav-section">GOOGLE ADS</div>
+            <div class="nav-item" onclick="go('campaigns', this)">🔤 Campaigns</div>
+            <div class="nav-item" onclick="go('keywords', this)">🔑 Keywords</div>
+            <div class="nav-item" onclick="go('adgroups', this)">📋 Ad Groups</div>
+            
+            <div class="nav-section">BILLING</div>
+            <div class="nav-item" onclick="go('invoice', this)">💳 Invoice & Payment</div>
+            
+            <div class="nav-section">ACTIVITY</div>
+            <div class="nav-item" onclick="go('changes', this)">⚡ Changes</div>
+            <div class="nav-item" onclick="go('report', this)">≡ Report</div>
+        </div>
+
+        <main>
+            <div class="page-header">
+                <div class="ph-left">
+                    <h1>Reliable Movers LLC</h1>
+                    <p class="ph-sub">April 2026 · Full Month Report</p>
+                </div>
+                <div class="ph-right">
+                    <div class="data-updated">Data updated</div>
+                    <div class="period-label">April 2026</div>
+                </div>
+            </div>
+
+            <!-- OVERVIEW -->
+            <div id="sec-overview" class="sec on">
+                <div class="summary-banner">Solid April: 44 attributed conversions (34 .com + 10 .net) · 25 calls + 19 form fills · <strong>$45.61 blended CPL</strong></div>
+
+                <h2>Google Ads Performance</h2>
+                <div class="metrics-row">
+                    <div class="metric-card">
+                        <div class="metric-label">Total Spend</div>
+                        <div class="metric-value">$2,006.85</div>
+                        <div class="metric-sub">.com: $1,256 | .net: $751</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Total Clicks</div>
+                        <div class="metric-value">383</div>
+                        <div class="metric-sub">9.28% avg CTR</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Impressions</div>
+                        <div class="metric-value">4,126</div>
+                        <div class="metric-sub">2 campaigns</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Attributed Conversions</div>
+                        <div class="metric-value green">44</div>
+                        <div class="metric-sub">tracked leads</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Avg CPC</div>
+                        <div class="metric-value">$5.24</div>
+                        <div class="metric-sub">11.49% blended CVR</div>
+                    </div>
+                </div>
+
+                <h2>Conversion Breakdown</h2>
+                <div class="metrics-row">
+                    <div class="metric-card">
+                        <div class="metric-label">Total Calls</div>
+                        <div class="metric-value green">25</div>
+                        <div class="metric-sub">18 (.com) + 7 (.net)</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Form Fills</div>
+                        <div class="metric-value green">19</div>
+                        <div class="metric-sub">16 (.com) + 3 (.net)</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Blended CPL</div>
+                        <div class="metric-value">$45.61</div>
+                        <div class="metric-sub">Cost per lead</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">.com CPL</div>
+                        <div class="metric-value green">$36.95</div>
+                        <div class="metric-sub">Primary campaign</div>
+                    </div>
+                </div>
+
+                <h2>Campaign Performance</h2>
+                <table>
+                    <tr>
+                        <th>Campaign</th>
+                        <th>Spend</th>
+                        <th>Clicks</th>
+                        <th>Impressions</th>
+                        <th>CTR</th>
+                        <th>Conversions</th>
+                        <th>CPL</th>
+                        <th>Conv. Rate</th>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;"><strong>reliablemoversllc.com</strong> (Primary)</td>
+                        <td>$1,256</td>
+                        <td>215</td>
+                        <td>2,194</td>
+                        <td>9.80%</td>
+                        <td style="color: #4ade80;"><strong>34</strong></td>
+                        <td style="color: #4ade80;">$36.95</td>
+                        <td>15.81%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;"><strong>reliablemoversllc.net</strong> (Secondary)</td>
+                        <td>$751</td>
+                        <td>168</td>
+                        <td>1,932</td>
+                        <td>8.70%</td>
+                        <td style="color: #4ade80;"><strong>10</strong></td>
+                        <td style="color: #f59e0b;">$75.06</td>
+                        <td>5.95%</td>
+                    </tr>
+                </table>
+
+                <h2>Top Performing Ad Groups (.com)</h2>
+                <table>
+                    <tr>
+                        <th>Ad Group</th>
+                        <th>Clicks</th>
+                        <th>Spend</th>
+                        <th>Conversions</th>
+                        <th>CPL</th>
+                        <th>Conv. Rate</th>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">Local Moving</td>
+                        <td>117</td>
+                        <td>$714.97</td>
+                        <td style="color: #4ade80;">19</td>
+                        <td>$37.63</td>
+                        <td>16.24%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">Reliable Movers</td>
+                        <td>65</td>
+                        <td>$397.01</td>
+                        <td style="color: #4ade80;">10</td>
+                        <td>$39.70</td>
+                        <td>15.38%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">★ Piano Moving (Best CPL)</td>
+                        <td>3</td>
+                        <td>$14.68</td>
+                        <td style="color: #4ade80; font-weight: bold;">1</td>
+                        <td style="color: #4ade80; font-weight: bold;">$14.68</td>
+                        <td style="color: #4ade80; font-weight: bold;">33.33%</td>
+                    </tr>
+                </table>
+
+                <h2>Top Keywords (.com)</h2>
+                <table>
+                    <tr>
+                        <th>Keyword</th>
+                        <th>Match</th>
+                        <th>QS</th>
+                        <th>Clicks</th>
+                        <th>Conversions</th>
+                        <th>CPL</th>
+                        <th>Conv. Rate</th>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">"reliable movers syracuse"</td>
+                        <td>Exact</td>
+                        <td style="color: #4ade80; font-weight: bold;">10</td>
+                        <td>27</td>
+                        <td style="color: #4ade80;">6</td>
+                        <td style="color: #4ade80;">$31.44</td>
+                        <td>22.22%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">"moving company near me"</td>
+                        <td>Exact</td>
+                        <td>3</td>
+                        <td>31</td>
+                        <td style="color: #4ade80;">7</td>
+                        <td>$29.99</td>
+                        <td>22.58%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">"packing service near me"</td>
+                        <td>Exact</td>
+                        <td>—</td>
+                        <td>6</td>
+                        <td style="color: #4ade80;">2</td>
+                        <td style="color: #4ade80;">$8.92</td>
+                        <td>33.33%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- CAMPAIGNS -->
+            <div id="sec-campaigns" class="sec">
+                <h2>Campaign Breakdown — April 2026</h2>
+                <div class="summary-box">
+                    <div class="summary-text">
+                        <strong>.com Campaign (Primary)</strong><br/>
+                        • Spend: $1,256 | Clicks: 215 | Impressions: 2,194<br/>
+                        • Conversions: 34 (18 calls + 16 forms) | CPL: $36.95<br/>
+                        • CTR: 9.80% | Avg CPC: $5.84 | Conv. Rate: 15.81%<br/>
+                        • Status: Search, Max Conversions, 7 Ad Groups<br/>
+                        <br/>
+                        <strong>.net Campaign (Secondary)</strong><br/>
+                        • Spend: $751 | Clicks: 168 | Impressions: 1,932<br/>
+                        • Conversions: 10 (7 calls + 3 forms) | CPL: $75.06<br/>
+                        • CTR: 8.70% | Avg CPC: $4.47 | Conv. Rate: 5.95%<br/>
+                        • Status: Search, Max Clicks, 13 Ad Groups<br/>
+                        <br/>
+                        <strong>Key Notes:</strong><br/>
+                        Rochester has been paused and geo-excluded per client direction. Syracuse and Ithaca are now the primary bid focus. Conversion tracking on .net campaign has been updated from "One per click" to "Every" for more accurate attribution.
+                    </div>
+                </div>
+            </div>
+
+            <!-- KEYWORDS -->
+            <div id="sec-keywords" class="sec">
+                <h2>Keyword Performance — April 2026</h2>
+                <div class="summary-box">
+                    <div class="summary-text">
+                        <strong>"reliable movers syracuse" (QS 10 — Perfect Score)</strong><br/>
+                        • Match: Exact | Clicks: 27 | Spend: $188.67 | Conversions: 6<br/>
+                        • CPL: $31.44 | Conv. Rate: 22.22%<br/>
+                        • Most efficient high-volume keyword in account<br/>
+                        <br/>
+                        <strong>"moving company near me"</strong><br/>
+                        • Match: Exact | Clicks: 31 | Spend: $209.92 | Conversions: 7<br/>
+                        • CPL: $29.99 | Conv. Rate: 22.58%<br/>
+                        <br/>
+                        <strong>"packing service near me" (Best CPL)</strong><br/>
+                        • Match: Exact | Clicks: 6 | Spend: $17.84 | Conversions: 2<br/>
+                        • CPL: $8.92 | Conv. Rate: 33.33% ⭐<br/>
+                        <br/>
+                        Note: 25+ negative keywords were added to Reliable Movers ad group (free, cheap, uhaul, pods, penske, craigslist, facebook marketplace, piano lessons, etc.) to eliminate budget waste on irrelevant search intent.
+                    </div>
+                </div>
+            </div>
+
+            <!-- AD GROUPS -->
+            <div id="sec-adgroups" class="sec">
+                <h2>Ad Group Performance — April 2026</h2>
+                <h3>.com Campaign</h3>
+                <table>
+                    <tr>
+                        <th>Ad Group</th>
+                        <th>Spend</th>
+                        <th>Clicks</th>
+                        <th>Conversions</th>
+                        <th>CPL</th>
+                        <th>Conv. Rate</th>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;"><strong>Local Moving</strong> (Most Spend)</td>
+                        <td>$714.97</td>
+                        <td>117</td>
+                        <td style="color: #4ade80;">19</td>
+                        <td>$37.63</td>
+                        <td>16.24%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;"><strong>Reliable Movers</strong></td>
+                        <td>$397.01</td>
+                        <td>65</td>
+                        <td style="color: #4ade80;">10</td>
+                        <td>$39.70</td>
+                        <td>15.38%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">Packing Services</td>
+                        <td>$73.92</td>
+                        <td>21</td>
+                        <td style="color: #4ade80;">2</td>
+                        <td>$36.96</td>
+                        <td>9.52%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">Interstate Moving</td>
+                        <td>$50.23</td>
+                        <td>8</td>
+                        <td style="color: #4ade80;">2</td>
+                        <td>$25.12</td>
+                        <td>25.00%</td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: left;">★ Piano Moving (Best CPL)</td>
+                        <td>$14.68</td>
+                        <td>3</td>
+                        <td style="color: #4ade80; font-weight: bold;">1</td>
+                        <td style="color: #4ade80; font-weight: bold;">$14.68</td>
+                        <td style="color: #4ade80; font-weight: bold;">33.33%</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- CHANGES -->
+            <div id="sec-changes" class="sec">
+                <h2>April Optimizations & Changes</h2>
+                <div class="summary-box" style="border-left: 3px solid #4ade80; margin-bottom: 16px;">
+                    <div style="color: #a0a0b0; font-size: 10px; margin-bottom: 8px;">April 2026 • By Advntage</div>
+                    <div style="color: #e0e0e0; font-weight: 600; margin-bottom: 8px;">✓ Conversion Tracking Fixed</div>
+                    <div class="summary-text">Updated .net campaign conversion action from "One per click" to "Every" setting. Form fill conversions will now be attributed accurately on every qualifying click for better CPL and CVR data.</div>
+                </div>
+                <div class="summary-box" style="border-left: 3px solid #4ade80; margin-bottom: 16px;">
+                    <div style="color: #a0a0b0; font-size: 10px; margin-bottom: 8px;">April 2026 • By Advntage</div>
+                    <div style="color: #e0e0e0; font-weight: 600; margin-bottom: 8px;">✓ Negative Keywords Added</div>
+                    <div class="summary-text">Added 25+ campaign-level negative keywords to Reliable Movers ad group (free, cheap, uhaul, pods, penske, tape, bubble wrap, craigslist, facebook marketplace, piano lessons, piano for sale, home depot, etc.) to eliminate irrelevant traffic.</div>
+                </div>
+                <div class="summary-box" style="border-left: 3px solid #4ade80; margin-bottom: 16px;">
+                    <div style="color: #a0a0b0; font-size: 10px; margin-bottom: 8px;">April 2026 • By Advntage</div>
+                    <div style="color: #e0e0e0; font-weight: 600; margin-bottom: 8px;">✓ Competitor Response</div>
+                    <div class="summary-text">Identified competitor running ads with "reliable movers" in headlines. Response: added sitelinks to Google Reviews, uploaded real job photos from gallery, added "reliable movers syracuse" as exact match keyword with increased bidding.</div>
+                </div>
+                <div class="summary-box" style="border-left: 3px solid #4ade80; margin-bottom: 16px;">
+                    <div style="color: #a0a0b0; font-size: 10px; margin-bottom: 8px;">April 2026 • By Advntage</div>
+                    <div style="color: #e0e0e0; font-weight: 600; margin-bottom: 8px;">✓ Pinned Headline & Policy Fix</div>
+                    <div class="summary-text">"Reliable Movers LLC" pinned as headline on all ads (per Jen's request). Google Ads policy violation received same morning was identified and fully resolved same day.</div>
+                </div>
+                <div class="summary-box" style="border-left: 3px solid #4ade80;">
+                    <div style="color: #a0a0b0; font-size: 10px; margin-bottom: 8px;">April 2026 • By Advntage</div>
+                    <div style="color: #e0e0e0; font-weight: 600; margin-bottom: 8px;">✓ Geo Strategy Restructure</div>
+                    <div class="summary-text">Per Jen's direction: Rochester ad group paused and Rochester excluded from geo targeting on both campaigns. Auburn budget reduced. Bidding increased in Syracuse and Ithaca (primary markets). New focus: Syracuse (primary) → Ithaca (secondary) → Auburn (reduced). Rochester fully off.</div>
+                </div>
+            </div>
+
+            <!-- INVOICE -->
+            <div id="sec-invoice" class="sec">
+                <h2>Invoice & Payment</h2>
+                <div class="summary-box" style="border-left: 3px solid #f59e0b; margin-bottom: 20px;">
+                    <div style="margin-bottom: 12px;">
+                        <strong>Invoice Due</strong><br/>
+                        April 2026 — Google Ads Management Fee
+                    </div>
+                    <div style="color: #a0a0b0; font-size: 12px; margin-bottom: 12px;">
+                        Campaign management, optimization & reporting
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+                        <span style="color: #e0e0e0; font-weight: 600;">Amount due</span>
+                        <span style="font-size: 24px; color: #f59e0b; font-weight: 700;">$500.00</span>
+                    </div>
+                    <div style="padding-top: 12px; border-top: 1px solid #2a3040;">
+                        <div style="color: #a0a0b0; font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px;">Preferred Payment Method</div>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 20px;">🅿️</span>
+                            <div>
+                                <div style="color: #e0e0e0; font-weight: 600; font-size: 13px;">PayPal</div>
+                                <div style="color: #a0a0b0; font-size: 11px;">paypal.me/johngreenfield28</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REPORT -->
+            <div id="sec-report" class="sec">
+                <h2>Summary Report — April 2026</h2>
+                <div class="summary-box">
+                    <div class="summary-text">
+                        <strong>April Performance Summary</strong><br/>
+                        <br/>
+                        Total Spend: <strong>$2,006.85</strong><br/>
+                        Total Leads: <strong>44 attributed conversions</strong> (34 .com + 10 .net)<br/>
+                        Blended CPL: <strong>$45.61</strong><br/>
+                        <br/>
+                        <strong>.com Campaign</strong> (Primary) — Strong Performance<br/>
+                        • Spend: $1,256 | Conversions: 34 | CPL: $36.95 ✓ Solid for moving industry<br/>
+                        • CTR: 9.80% | Conv. Rate: 15.81%<br/>
+                        • Best ad group: Local Moving ($37.63 CPL)<br/>
+                        • Best keyword: "packing service near me" ($8.92 CPL, 33% CVR)<br/>
+                        • Star performer: Piano Moving ($14.68 CPL, 33% CVR — expand this niche)<br/>
+                        <br/>
+                        <strong>.net Campaign</strong> (Secondary) — Tracking Issue Resolution<br/>
+                        • Spend: $751 | Conversions: 10 | Reported CPL: $75.06<br/>
+                        • CTR: 8.70% | Conv. Rate: 5.95%<br/>
+                        • Conversion setting updated from "One per click" to "Every" — expect improved accuracy in May<br/>
+                        <br/>
+                        <strong>May Action Plan</strong><br/>
+                        ✓ Expand Piano Moving Ad Group — scale the $14.68 CPL niche with new keywords<br/>
+                        ✓ Increase bids on "Reliable Movers Syracuse" — QS 10 keyword, capture more branded volume<br/>
+                        ✓ Monitor .net conversion tracking — improved attribution will show cleaner CPL data<br/>
+                        ✓ Continue geo focus on Syracuse & Ithaca per client direction<br/>
+                        <br/>
+                        <strong>Key Takeaway:</strong> Solid month with strong .com performance at $36.95 CPL. Piano Moving niche shows exceptional potential (33% CVR). Competitor response measures in place. .net campaign tracking issue resolved for cleaner May reporting.
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <nav class="mob-nav">
+        <div class="mob-nav-inner">
+            <div class="mn on" onclick="go('overview', null); mn(this)"><div class="mn-icon">◈</div><div class="mn-label">Home</div></div>
+            <div class="mn" onclick="go('campaigns', null); mn(this)"><div class="mn-icon">📊</div><div class="mn-label">Campaigns</div></div>
+            <div class="mn" onclick="go('keywords', null); mn(this)"><div class="mn-icon">🔑</div><div class="mn-label">Keywords</div></div>
+            <div class="mn" onclick="go('adgroups', null); mn(this)"><div class="mn-icon">📋</div><div class="mn-label">Ad Groups</div></div>
+            <div class="mn" onclick="go('report', null); mn(this)"><div class="mn-icon">≡</div><div class="mn-label">Report</div></div>
+        </div>
+    </nav>
+
+    <script>
+        function go(id, el) {
+            document.querySelectorAll('.sec').forEach(s => s.classList.remove('on'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('on'));
+            document.getElementById('sec-' + id).classList.add('on');
+            if (el) el.classList.add('on');
+            window.scrollTo(0, 0);
+        }
+        function mn(el) {
+            document.querySelectorAll('.mn').forEach(n => n.classList.remove('on'));
+            el.classList.add('on');
+        }
+    </script>
+</body>
+</html>
