@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services — Advntage Paid Media Agency</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #0066cc;
+        }
+
+        .cta-button {
+            background: #0066cc;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .cta-button:hover {
+            background: #0052a3;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .page-header {
+            padding: 3rem 0;
+            text-align: center;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        .service-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: #f9f9f9;
+            border-radius: 8px;
+        }
+
+        .service-item {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: white;
+            border-radius: 8px;
+            border-left: 4px solid #0066cc;
+        }
+
+        .service-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #0066cc;
+        }
+
+        .service-item p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-left: 0;
+        }
+
+        .service-features li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .service-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #0066cc;
+            font-weight: bold;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .service-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            border: 1px solid #eee;
+            transition: border-color 0.2s;
+        }
+
+        .service-card:hover {
+            border-color: #0066cc;
+        }
+
+        .service-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0066cc;
+            margin-bottom: 1rem;
+        }
+
+        .cta-button-large {
+            background: #0066cc;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .cta-button-large:hover {
+            background: #0052a3;
+        }
+
+        .retargeting-table {
+            width: 100%;
+            margin: 2rem 0;
+            border-collapse: collapse;
+        }
+
+        .retargeting-table th,
+        .retargeting-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .retargeting-table th {
+            background: #f9f9f9;
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        footer a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #555;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .retargeting-table {
+                font-size: 0.9rem;
+            }
+
+            .retargeting-table th,
+            .retargeting-table td {
+                padding: 0.75rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Advntage</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="johns-tree-case-study.html">Case Studies</a></li>
+                <li><a href="dashboard.html">Client Portal</a></li>
+                <li><a href="contact.html" class="cta-button">Free Audit →</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="page-header">
+            <h1>Everything you need to dominate your local market.</h1>
+            <p>We specialize in Google and Facebook advertising for home service businesses. Every service is designed to generate qualified leads in your exclusive territory.</p>
+        </section>
+
+        <section class="service-section">
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-number">01</div>
+                    <h3>Google Search Ads</h3>
+                    <p>Capture buyers with high commercial intent at the exact moment they search for your service.</p>
+                    <ul class="service-features">
+                        <li>Keyword research & intent mapping</li>
+                        <li>Ad copy A/B testing</li>
+                        <li>Bid strategy optimization</li>
+                        <li>Negative keyword management</li>
+                        <li>Quality Score improvements</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-number">02</div>
+                    <h3>Performance Max</h3>
+                    <p>Google's most advanced campaign type reaches customers across Search, Display, YouTube, Gmail, Maps, and Discover.</p>
+                    <ul class="service-features">
+                        <li>Asset group strategy & setup</li>
+                        <li>Audience signal configuration</li>
+                        <li>Creative asset development</li>
+                        <li>Performance monitoring</li>
+                        <li>Budget pacing & scaling</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-number">03</div>
+                    <h3>Facebook & Instagram Ads</h3>
+                    <p>Meta's platforms give you unmatched audience targeting for home service businesses.</p>
+                    <ul class="service-features">
+                        <li>Audience research & targeting</li>
+                        <li>Ad creative strategy & copywriting</li>
+                        <li>Full-funnel campaign structure</li>
+                        <li>Budget optimization across ad sets</li>
+                        <li>Creative testing & iteration</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-number">04</div>
+                    <h3>Landing Page Development</h3>
+                    <p>High-converting landing pages built specifically for your ad traffic.</p>
+                    <ul class="service-features">
+                        <li>Dedicated Google Ads landing pages</li>
+                        <li>Facebook-optimized landing pages</li>
+                        <li>Mobile-first responsive design</li>
+                        <li>A/B testing for headline & CTA</li>
+                        <li>Speed optimized for quality score</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-number">05</div>
+                    <h3>Google Tag Manager & Conversion Tracking</h3>
+                    <p>You can't optimize what you can't measure.</p>
+                    <ul class="service-features">
+                        <li>Google Tag Manager setup & management</li>
+                        <li>Call tracking implementation</li>
+                        <li>Form submission tracking</li>
+                        <li>GA4 configuration</li>
+                        <li>Custom event & goal tracking</li>
+                    </ul>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-number">06</div>
+                    <h3>Facebook Ad Graphic Creation</h3>
+                    <p>Professional, scroll-stopping ad graphics built specifically for your brand.</p>
+                    <ul class="service-features">
+                        <li>Brand-aligned ad creative</li>
+                        <li>Multiple size & format variations</li>
+                        <li>Carousel and story formats</li>
+                        <li>Seasonal and promotional graphics</li>
+                        <li>Ongoing creative refresh</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="service-item">
+            <h3>Smart Retargeting Campaigns</h3>
+            <p>Most visitors don't convert on their first visit. Our retargeting campaigns re-engage your warmest audiences with precision.</p>
+            
+            <table class="retargeting-table">
+                <tr>
+                    <th>Audience Type</th>
+                    <th>Strategy</th>
+                </tr>
+                <tr>
+                    <td><strong>Started a Form</strong></td>
+                    <td>Re-engage people who opened your contact form but didn't complete it with a compelling reason to finish.</td>
+                </tr>
+                <tr>
+                    <td><strong>Watched Your Video</strong></td>
+                    <td>Target people by watch percentage (25%, 50%, 75%, 95%) with progressively stronger CTAs.</td>
+                </tr>
+                <tr>
+                    <td><strong>Visited Your Website</strong></td>
+                    <td>Re-target all site visitors by page visited, time on site, and pages viewed.</td>
+                </tr>
+            </table>
+        </section>
+
+        <section class="service-section">
+            <h2 style="margin-bottom: 2rem;">What You Get With Every Service</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Weekly Reports</h3>
+                    <p>Plain-English weekly performance reports — no jargon, just what matters.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Client Dashboard</h3>
+                    <p>Real-time access to your own dashboard — see leads, spend, and results any time.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Exclusive Territory</h3>
+                    <p>We never work with a competing business in your sector within 15 miles.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Ongoing Optimization</h3>
+                    <p>Campaigns are reviewed and optimized weekly to ensure efficiency.</p>
+                </div>
+            </div>
+        </section>
+
+        <section style="text-align: center; padding: 3rem 0;">
+            <h2>Ready to get started?</h2>
+            <p style="margin: 1rem 0 2rem 0; color: #666;">We'll handle everything from strategy to reporting.</p>
+            <a href="contact.html" class="cta-button-large">Get Your Free Audit →</a>
+            <div style="margin-top: 2rem;">
+                <a href="pricing.html" style="color: #0066cc; text-decoration: none; margin-right: 2rem;">View Pricing</a>
+                <a href="index.html" style="color: #0066cc; text-decoration: none;">Back to Home</a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <footer-content>
+            <div>
+                <h4>Advntage</h4>
+                <p>Paid Media Agency for Home Service Businesses</p>
+                <p>Based in Binghamton, NY</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul style="list-style: none;">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Get Started</h4>
+                <ul style="list-style: none;">
+                    <li><a href="contact.html">Free Audit</a></li>
+                    <li><a href="pricing.html">View Pricing</a></li>
+                    <li><a href="johns-tree-case-study.html">Case Studies</a></li>
+                    <li><a href="dashboard.html">Client Portal</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p><strong>Email:</strong> <a href="mailto:info@advntage.com">info@advntage.com</a></p>
+                <p><strong>Location:</strong> Binghamton, NY</p>
+                <p><strong>Web:</strong> advntage.com</p>
+            </div>
+        </footer-content>
+        <footer-bottom>
+            <p>© 2026 Advntage Paid Media Agency · <a href="index.html" style="color: inherit;">advntage.com</a></p>
+        </footer-bottom>
+    </footer>
+</body>
+</html>

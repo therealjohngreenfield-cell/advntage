@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advntage — Paid Media Agency</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            background: #fff;
+            border-bottom: 1px solid #eee;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #000;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #0066cc;
+        }
+
+        .cta-button {
+            background: #0066cc;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .cta-button:hover {
+            background: #0052a3;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .hero {
+            padding: 6rem 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .primary-button {
+            background: #0066cc;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .primary-button:hover {
+            background: #0052a3;
+        }
+
+        .secondary-button {
+            background: #f0f0f0;
+            color: #333;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .secondary-button:hover {
+            background: #e0e0e0;
+        }
+
+        .logo-section {
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .logo-section img {
+            max-width: 200px;
+            height: auto;
+        }
+
+        .features {
+            background: #f9f9f9;
+            padding: 3rem 0;
+            margin: 3rem 0;
+            border-radius: 8px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .feature {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .feature h3 {
+            margin-bottom: 1rem;
+            color: #0066cc;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .stat {
+            padding: 2rem;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #0066cc;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: #666;
+        }
+
+        .testimonials {
+            background: #f9f9f9;
+            padding: 3rem 0;
+            margin: 3rem 0;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+        }
+
+        .testimonial {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            border-left: 4px solid #0066cc;
+        }
+
+        .testimonial-stars {
+            color: #ffc107;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .testimonial-role {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .cta-section {
+            background: #0066cc;
+            color: white;
+            padding: 3rem;
+            border-radius: 8px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .cta-section h2 {
+            margin-bottom: 1rem;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        footer a {
+            color: #ccc;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            color: white;
+        }
+
+        footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #555;
+            color: #999;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .primary-button, .secondary-button {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Advntage</a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="pricing.html">Pricing</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="johns-tree-case-study.html">Case Studies</a></li>
+                <li><a href="dashboard.html">Client Portal</a></li>
+                <li><a href="contact.html" class="cta-button">Free Audit →</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="logo-section">
+                <img src="https://advntage.com/advntage-logo.png" alt="Advntage">
+            </div>
+            <h1>Advntage drives real results.</h1>
+            <p>We run high-performance Google and Facebook ad campaigns for home service businesses — generating exclusive leads in your local market.</p>
+            <div class="hero-buttons">
+                <a href="contact.html" class="primary-button">Get Your Free Audit →</a>
+                <a href="services.html" class="secondary-button">See What We Do</a>
+            </div>
+        </section>
+
+        <section class="features">
+            <h2 style="text-align: center; margin-bottom: 2rem;">Why Choose Advntage</h2>
+            <div class="features-grid">
+                <div class="feature">
+                    <h3>✓ Exclusive Territory</h3>
+                    <p>One business per sector within 15 miles</p>
+                </div>
+                <div class="feature">
+                    <h3>✓ Specialists</h3>
+                    <p>Home service business experts</p>
+                </div>
+                <div class="feature">
+                    <h3>✓ Your Leads</h3>
+                    <p>Not shared with competitors</p>
+                </div>
+                <div class="feature">
+                    <h3>✓ Weekly Reports</h3>
+                    <p>Real-time performance transparency</p>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 style="text-align: center; margin: 2rem 0;">Platforms We Master</h2>
+            <div class="stats">
+                <div class="stat">
+                    <div class="stat-label">Google Search</div>
+                    <p>Performance Max, Local & LSA</p>
+                </div>
+                <div class="stat">
+                    <div class="stat-label">Facebook Ads</div>
+                    <p>Instagram, Retargeting</p>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">4×</div>
+                    <div class="stat-label">Average ROAS</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">30%</div>
+                    <div class="stat-label">Avg Cost Per Lead Reduction</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <h2 style="text-align: center; margin-bottom: 2rem;">What Our Clients Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <div class="testimonial-text">"Advntage completely transformed our lead volume. Within 60 days we were getting more qualified calls than we had all of last year."</div>
+                    <div class="testimonial-author">Mike R.</div>
+                    <div class="testimonial-role">Owner, Premier Roofing Co.</div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <div class="testimonial-text">"The weekly reports are incredibly detailed but easy to understand. Our cost per lead dropped by 40% in the first three months."</div>
+                    <div class="testimonial-author">Sarah L.</div>
+                    <div class="testimonial-role">Owner, Sunshine Cleaning Services</div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <div class="testimonial-text">"Best decision I made for my HVAC company. The landing pages convert incredibly well. We're now booking 3-4 weeks out."</div>
+                    <div class="testimonial-author">Dave T.</div>
+                    <div class="testimonial-role">Owner, TempRight HVAC</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="cta-section">
+            <h2>Ready to get the Advntage?</h2>
+            <p style="margin-bottom: 2rem;">Secure your territory before a competitor does. We only work with one business per sector per area.</p>
+            <a href="contact.html" class="primary-button" style="background: white; color: #0066cc;">Claim Your Territory →</a>
+        </section>
+    </main>
+
+    <footer>
+        <footer-content>
+            <div>
+                <h4>Advntage</h4>
+                <p>Paid Media Agency for Home Service Businesses</p>
+                <p>Based in Binghamton, NY</p>
+            </div>
+            <div>
+                <h4>Quick Links</h4>
+                <ul style="list-style: none;">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Get Started</h4>
+                <ul style="list-style: none;">
+                    <li><a href="contact.html">Free Audit</a></li>
+                    <li><a href="pricing.html">View Pricing</a></li>
+                    <li><a href="johns-tree-case-study.html">Case Studies</a></li>
+                    <li><a href="dashboard.html">Client Portal</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Contact</h4>
+                <p><strong>Email:</strong> <a href="mailto:info@advntage.com">info@advntage.com</a></p>
+                <p><strong>Location:</strong> Binghamton, NY</p>
+                <p><strong>Web:</strong> advntage.com</p>
+            </div>
+        </footer-content>
+        <footer-bottom>
+            <p>© 2026 Advntage Paid Media Agency · <a href="index.html" style="color: inherit;">advntage.com</a></p>
+            <p style="margin-top: 1rem;">
+                <a href="https://www.facebook.com/advntageagency" style="margin-right: 1rem;">Facebook</a>
+            </p>
+        </footer-bottom>
+    </footer>
+</body>
+</html>
