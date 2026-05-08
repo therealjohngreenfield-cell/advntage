@@ -1,0 +1,11 @@
+# Advntage Robots.txt
+User-agent: *
+Allow: /
+Disallow: /dashboard.html
+Disallow: /.git
+
+# Sitemap
+Sitemap: https://advntage.com/sitemap.xml
+
+# Crawl delay
+Crawl-delay: 1
