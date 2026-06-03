@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>John's Tree Service — May 2026 | Advntage</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; 
+            background: #0f1419; 
+            color: #e0e0e0; 
+            line-height: 1.6; 
+        }
+        .wrapper { display: flex; min-height: 100vh; }
+        .nav-side { 
+            width: 240px; 
+            background: #1a1f2a; 
+            padding: 30px 20px; 
+            border-right: 1px solid #2a3040; 
+            overflow-y: auto; 
+            position: sticky; 
+            top: 0; 
+            height: 100vh; 
+        }
+        .logo { 
+            font-size: 16px; 
+            font-weight: 700; 
+            color: #64b5f6; 
+            margin-bottom: 30px; 
+            text-decoration: none;
+        }
+        .client-badge {
+            background: #0d3f1a;
+            color: #4ade80;
+            padding: 6px 10px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        .nav-section {
+            font-size: 11px;
+            color: #5a6a80;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0 12px;
+            margin: 20px 0 8px;
+            font-weight: 600;
+        }
+        .nav-item { 
+            padding: 12px; 
+            margin: 4px 0; 
+            border-radius: 6px; 
+            cursor: pointer; 
+            font-size: 13px; 
+            color: #a0a0b0; 
+            transition: all 0.3s; 
+        }
+        .nav-item:hover { 
+            background: #2a3040; 
+            color: #64b5f6; 
+        }
+        .nav-item.on { 
+            background: #2a4a7a; 
+            color: #64b5f6; 
+            font-weight: 600; 
+        }
+        .nav-item.inv-on { 
+            background: #2a3040; 
+            color: #ff6b6b; 
+        }
+        main { flex: 1; padding: 40px; }
+        .page-header { 
+            margin-bottom: 30px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-start; 
+            border-bottom: 1px solid #2a3040; 
+            padding-bottom: 20px; 
+        }
+        .ph-left h1 { 
+            font-size: 32px; 
+            font-weight: 700; 
+            color: #ffffff; 
+            margin-bottom: 8px; 
+        }
+        .ph-sub { 
+            font-size: 13px; 
+            color: #a0a0b0; 
+        }
+        .ph-right { text-align: right; }
+        .data-updated { 
+            font-size: 12px; 
+            color: #a0a0b0; 
+            margin-bottom: 4px; 
+        }
+        .period-label { 
+            font-size: 16px; 
+            font-weight: 600; 
+            color: #ffffff; 
+            margin-bottom: 8px; 
+        }
+        .summary-banner {
+            background: #0d3f1a;
+            border: 1px solid #4ade80;
+            color: #4ade80;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 12px;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        .summary-banner::before {
+            content: "✅ ";
+            margin-right: 8px;
+        }
+        h2 { 
+            font-size: 18px; 
+            font-weight: 700; 
+            color: #ffffff; 
+            margin: 30px 0 20px 0; 
+        }
+        h3 { 
+            font-size: 12px; 
+            font-weight: 600; 
+            color: #64b5f6; 
+            margin: 20px 0 15px 0; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+        }
+        .sec { display: none; }
+        .sec.on { display: block; }
+        
+        /* Metric Cards */
+        .metrics-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px;
+            margin: 20px 0;
+        }
+        .metric-card {
+            background: #1a1f2a;
+            border: 1px solid #2a3040;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        .metric-label {
+            font-size: 10px;
+            color: #a0a0b0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        .metric-value {
+            font-size: 20px;
+            color: #64b5f6;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .metric-value.green { color: #4ade80; }
+        .metric-value.yellow { color: #f59e0b; }
+        .metric-sub {
+            font-size: 10px;
+            color: #a0a0b0;
+        }
+        
+        /* Tables */
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin: 20px 0; 
+            background: #1a1f2a; 
+            border-radius: 6px; 
+            overflow: hidden; 
+        }
+        th { 
+            background: #2d5016; 
+            padding: 12px; 
+            text-align: left; 
+            font-size: 11px; 
+            font-weight: 700; 
+            color: #ffffff; 
+            text-transform: uppercase; 
+            letter-spacing: 0.5px; 
+        }
+        td { 
+            padding: 12px; 
+            border-top: 1px solid #2a3040; 
+            font-size: 12px; 
+            text-align: center;
+        }
+        td:first-child { text-align: left; }
+        tr:hover { background: #252d3a; }
+        
+        /* Summary Box */
+        .summary-box {
+            background: #1a1f2a;
+            border: 1px solid #2a3040;
+            border-radius: 6px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .summary-text {
+            font-size: 11px;
+            color: #a0a0b0;
+            line-height: 1.8;
+        }
+        .summary-text b { color: #e0e0e0; }
+        .summary-text strong { color: #64b5f6; }
+
+        /* CPL badges */
+        .cpl-great { color: #4ade80; font-weight: 700; }
+        .cpl-ok { color: #f59e0b; font-weight: 700; }
+        .cpl-high { color: #ff6b6b; font-weight: 700; }
+        
+        .mob-nav { display: none; }
+        
+        @media (max-width: 768px) {
+            .wrapper { flex-direction: column; }
+            .nav-side { width: 100%; height: auto; position: static; border-right: none; border-bottom: 1px solid #2a3040; padding: 15px; display: flex; gap: 10px; overflow-x: auto; }
+            .nav-item { padding: 8px 12px; font-size: 12px; }
+            main { padding: 20px; padding-bottom: 70px; }
+            .mob-nav { display: flex; position: fixed; bottom: 0; left: 0; right: 0; background: #1a1f2a; border-top: 1px solid #2a3040; height: 56px; z-index: 1000; }
+            .mob-nav-inner { display: flex; justify-content: space-around; align-items: center; height: 100%; }
+            .mn { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; color: #a0a0b0; font-size: 12px; }
+            .mn.on { color: #64b5f6; }
+            .mn-icon { font-size: 20px; margin-bottom: 2px; }
+            .mn-label { font-size: 10px; }
+            .page-header { flex-direction: column; }
+            .ph-right { text-align: left; margin-top: 15px; }
+            .metrics-row { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="nav-side">
+            <div class="logo">Advntage</div>
+            <div class="client-badge">JOHN'S TREE SERVICE</div>
+            
+            <div class="nav-section">OVERVIEW</div>
+            <div class="nav-item on" onclick="go('overview', this)">📊 Dashboard</div>
+            
+            <div class="nav-section">GOOGLE ADS</div>
+            <div class="nav-item" onclick="go('google-campaigns', this)">🔤 Campaigns</div>
+            <div class="nav-item" onclick="go('google-keywords', this)">🔑 Keywords</div>
+            
+            <div class="nav-section">META ADS</div>
+            <div class="nav-item" onclick="go('meta', this)">f Campaigns</div>
+            
+            <div class="nav-section">LOCAL SERVICE ADS</div>
+            <div class="nav-item" onclick="go('lsa', this)">📋 LSA Leads</div>
+            
+            <div class="nav-section">BILLING</div>
+            <div class="nav-item" onclick="go('invoice', this)">💳 Invoice & Payment</div>
+            
+            <div class="nav-section">ACTIVITY</div>
+            <div class="nav-item" onclick="go('report', this)">≡ Report</div>
+        </div>
+
+        <main>
+            <div class="page-header">
+                <div class="ph-left">
+                    <h1>John's Tree Service</h1>
+                    <p class="ph-sub">May 2026 · Full Month Report</p>
+                </div>
+                <div class="ph-right">
+                    <div class="data-updated">Data updated</div>
+                    <div class="period-label">May 2026</div>
+                </div>
+            </div>
+
+            <!-- OVERVIEW -->
+            <div id="sec-overview" class="sec on">
+                <div class="summary-banner">Strong May: 56 Google conversions · 6 Meta form submissions · 111 LSA charged leads · <strong>173 total leads across all channels · $24.25 blended CPL.</strong></div>
+
+                <h2>Google Ads</h2>
+                <div class="metrics-row">
+                    <div class="metric-card">
+                        <div class="metric-label">Impressions</div>
+                        <div class="metric-value">11,721</div>
+                        <div class="metric-sub">4.21% CTR</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Clicks</div>
+                        <div class="metric-value">494</div>
+                        <div class="metric-sub">$2.23 avg CPC</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Spend</div>
+                        <div class="metric-value">$1,100.51</div>
+                        <div class="metric-sub">2 campaigns</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Conversions</div>
+                        <div class="metric-value green">56</div>
+                        <div class="metric-sub">tracked leads</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Cost / Lead</div>
+                        <div class="metric-value">$19.65</div>
+                        <div class="metric-sub">blended</div>
+                    </div>
+                </div>
+
+                <h2>Meta Ads</h2>
+                <div class="metrics-row">
+                    <div class="metric-card">
+                        <div class="metric-label">Reach</div>
+                        <div class="metric-value">27,644</div>
+                        <div class="metric-sub">52,253 impr.</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Clicks</div>
+                        <div class="metric-value">1,192</div>
+                        <div class="metric-sub">2.28% CTR</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Spend</div>
+                        <div class="metric-value">$582.88</div>
+                        <div class="metric-sub">5 campaigns</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Conversions</div>
+                        <div class="metric-value green">6</div>
+                        <div class="metric-sub">form submissions</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Cost / Lead</div>
+                        <div class="metric-value yellow">$97.15</div>
+                        <div class="metric-sub">avg CPL</div>
+                    </div>
+                </div>
+
+                <h2>📋 Local Service Ads</h2>
+                <div class="metrics-row">
+                    <div class="metric-card">
+                        <div class="metric-label">Charged Leads</div>
+                        <div class="metric-value green">111</div>
+                        <div class="metric-sub">May 2026</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Phone Leads</div>
+                        <div class="metric-value">87</div>
+                        <div class="metric-sub">$2,045.31 spend</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">LSA Spend</div>
+                        <div class="metric-value">$2,512.16</div>
+                        <div class="metric-sub">May 2026</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Cost / Lead</div>
+                        <div class="metric-value green">$22.63</div>
+                        <div class="metric-sub">per charged lead</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-label">Top Impression</div>
+                        <div class="metric-value">99.15%</div>
+                        <div class="metric-sub">on Search</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- GOOGLE CAMPAIGNS -->
+            <div id="sec-google-campaigns" class="sec">
+                <h2>Google Campaigns — May 2026</h2>
+                <h3>2 active</h3>
+                <table>
+                    <tr>
+                        <th>Campaign</th>
+                        <th>Type</th>
+                        <th>Impr.</th>
+                        <th>Clicks</th>
+                        <th>CTR</th>
+                        <th>Spend</th>
+                        <th>CPC</th>
+                        <th>Conv.</th>
+                        <th>CPL</th>
+                    </tr>
+                    <tr>
+                        <td>Tree Services - Main Search 2026</td>
+                        <td>Search</td>
+                        <td>5,092</td>
+                        <td>210</td>
+                        <td>4.12%</td>
+                        <td>$651.74</td>
+                        <td>$3.10</td>
+                        <td>21.34</td>
+                        <td class="cpl-ok">$30.54</td>
+                    </tr>
+                    <tr>
+                        <td>Leads-Performance Max-2</td>
+                        <td>PMax</td>
+                        <td>6,629</td>
+                        <td>284</td>
+                        <td>4.28%</td>
+                        <td>$448.77</td>
+                        <td>$1.58</td>
+                        <td>34.66</td>
+                        <td class="cpl-great">$12.95</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- GOOGLE KEYWORDS -->
+            <div id="sec-google-keywords" class="sec">
+                <h2>Top Keywords — May 2026</h2>
+                <h3>by conversions</h3>
+                <table>
+                    <tr>
+                        <th>Keyword</th>
+                        <th>Impr.</th>
+                        <th>Clicks</th>
+                        <th>Spend</th>
+                        <th>CPC</th>
+                        <th>Conv.</th>
+                    </tr>
+                    <tr>
+                        <td>lawn and landscaping service</td>
+                        <td>1,906</td>
+                        <td>76</td>
+                        <td>$277.05</td>
+                        <td>$3.65</td>
+                        <td class="cpl-great">8.00</td>
+                    </tr>
+                    <tr>
+                        <td>tree service near me</td>
+                        <td>512</td>
+                        <td>40</td>
+                        <td>$118.83</td>
+                        <td>$2.97</td>
+                        <td class="cpl-great">3.00</td>
+                    </tr>
+                    <tr>
+                        <td>outdoor landscape design</td>
+                        <td>172</td>
+                        <td>5</td>
+                        <td>$11.04</td>
+                        <td>$2.21</td>
+                        <td>2.00</td>
+                    </tr>
+                    <tr>
+                        <td>landscaping near me</td>
+                        <td>460</td>
+                        <td>12</td>
+                        <td>$42.00</td>
+                        <td>$3.50</td>
+                        <td>2.00</td>
+                    </tr>
+                    <tr>
+                        <td>tree service contractors</td>
+                        <td>172</td>
+                        <td>10</td>
+                        <td>$13.34</td>
+                        <td>$1.33</td>
+                        <td>1.00</td>
+                    </tr>
+                    <tr>
+                        <td>tree removal near me</td>
+                        <td>57</td>
+                        <td>1</td>
+                        <td>$9.25</td>
+                        <td>$9.25</td>
+                        <td>1.00</td>
+                    </tr>
+                    <tr>
+                        <td>tree cutters near me</td>
+                        <td>126</td>
+                        <td>4</td>
+                        <td>$15.30</td>
+                        <td>$3.83</td>
+                        <td>1.00</td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- META CAMPAIGNS -->
+            <div id="sec-meta" class="sec">
+                <h2>Meta Campaigns — May 2026</h2>
+                <h3>5 campaigns · 2 lead gen · 3 post boosts</h3>
+                <table>
+                    <tr>
+                        <th>Campaign</th>
+                        <th>Impr.</th>
+                        <th>Reach</th>
+                        <th>Clicks</th>
+                        <th>Spend</th>
+                        <th>CPC</th>
+                        <th>Conv.</th>
+                        <th>CPL</th>
+                    </tr>
+                    <tr>
+                        <td>Cortland Lead Campaign</td>
+                        <td>12,061</td>
+                        <td>6,912</td>
+                        <td>225</td>
+                        <td>$183.53</td>
+                        <td>$0.82</td>
+                        <td>4</td>
+                        <td class="cpl-ok">$45.88</td>
+                    </tr>
+                    <tr>
+                        <td>Cortland Lead Campaign - Retarget</td>
+                        <td>13,677</td>
+                        <td>7,116</td>
+                        <td>226</td>
+                        <td>$183.10</td>
+                        <td>$0.81</td>
+                        <td>2</td>
+                        <td class="cpl-high">$91.55</td>
+                    </tr>
+                    <tr>
+                        <td>Post: "Tight spaces. Tough jobs."</td>
+                        <td>7,024</td>
+                        <td>3,147</td>
+                        <td>145</td>
+                        <td>$61.51</td>
+                        <td>$0.42</td>
+                        <td>0</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Post: "From excavation and grading..."</td>
+                        <td>11,930</td>
+                        <td>6,078</td>
+                        <td>340</td>
+                        <td>$85.09</td>
+                        <td>$0.25</td>
+                        <td>0</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td>Post: "The Right Equipment. The Right Results."</td>
+                        <td>7,561</td>
+                        <td>4,391</td>
+                        <td>256</td>
+                        <td>$69.65</td>
+                        <td>$0.27</td>
+                        <td>0</td>
+                        <td>—</td>
+                    </tr>
+                </table>
+                <p style="color: #a0a0b0; font-size: 11px; margin-top: -10px; font-style: italic;">Post boost campaigns are awareness-focused; lead forms only on Cortland campaigns.</p>
+            </div>
+
+            <!-- LSA -->
+            <div id="sec-lsa" class="sec">
+                <h2>Local Service Ads — May 2026</h2>
+                <p style="color: #a0a0b0; font-size: 12px; margin-bottom: 16px;">111 charged leads</p>
+                <table>
+                    <tr>
+                        <th>Metric</th>
+                        <th>Value</th>
+                    </tr>
+                    <tr>
+                        <td>Total Charged Leads</td>
+                        <td><strong style="color: #4ade80;">111</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Phone Leads</td>
+                        <td>87 ($2,045.31)</td>
+                    </tr>
+                    <tr>
+                        <td>Message Leads</td>
+                        <td>24 ($466.85)</td>
+                    </tr>
+                    <tr>
+                        <td>Credited Leads</td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td>Not Charged</td>
+                        <td>11</td>
+                    </tr>
+                    <tr>
+                        <td>Total Spend</td>
+                        <td><strong>$2,512.16</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Cost Per Lead (Phone)</td>
+                        <td>$23.51</td>
+                    </tr>
+                    <tr>
+                        <td>Cost Per Lead (Message)</td>
+                        <td>$19.45</td>
+                    </tr>
+                    <tr>
+                        <td>Blended Cost Per Lead</td>
+                        <td><strong style="color: #4ade80;">$22.63</strong></td>
+                    </tr>
+                    <tr>
+                        <td>Ad Impressions</td>
+                        <td>7,680</td>
+                    </tr>
+                    <tr>
+                        <td>Top Impression Rate</td>
+                        <td>99.15%</td>
+                    </tr>
+                    <tr>
+                        <td>Absolute Top Impression Rate</td>
+                        <td>97.44%</td>
+                    </tr>
+                </table>
+
+                <h3>Top Job Types (Charged Leads)</h3>
+                <table>
+                    <tr>
+                        <th>Job Type</th>
+                        <th>Leads</th>
+                    </tr>
+                    <tr>
+                        <td>Tree Removal</td>
+                        <td>30</td>
+                    </tr>
+                    <tr>
+                        <td>Tree Trimming &amp; Pruning</td>
+                        <td>10</td>
+                    </tr>
+                    <tr>
+                        <td>Stump Removal</td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td>Hardscapes</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td>Other</td>
+                        <td>1</td>
+                    </tr>
+                    <tr>
+                        <td style="color: #a0a0b0; font-style: italic;">No job type listed (phone calls)</td>
+                        <td style="color: #a0a0b0;">55</td>
+                    </tr>
+                </table>
+
+                <h3>Top Locations (Charged Leads)</h3>
+                <table>
+                    <tr>
+                        <th>Location</th>
+                        <th>Leads</th>
+                    </tr>
+                    <tr><td>Johnson City</td><td>21</td></tr>
+                    <tr><td>Binghamton</td><td>21</td></tr>
+                    <tr><td>Endicott</td><td>18</td></tr>
+                    <tr><td>Cortland</td><td>9</td></tr>
+                    <tr><td>Vestal</td><td>5</td></tr>
+                    <tr><td>Homer</td><td>4</td></tr>
+                    <tr><td>Oxford</td><td>4</td></tr>
+                    <tr><td>Norwich</td><td>3</td></tr>
+                </table>
+            </div>
+
+            <!-- INVOICE -->
+            <div id="sec-invoice" class="sec">
+                <h2>Invoice & Payment</h2>
+                
+                <div class="summary-box" style="border-left: 3px solid #f59e0b; margin-bottom: 20px;">
+                    <div style="margin-bottom: 12px;">
+                        <strong>Invoice Due</strong><br/>
+                        May 2026 — Management Fee
+                    </div>
+                    <div style="color: #a0a0b0; font-size: 12px; margin-bottom: 12px;">
+                        Google Ads · Meta Ads · Management
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                        <span style="color: #e0e0e0; font-weight: 600;">Amount due</span>
+                        <span style="font-size: 24px; color: #f59e0b; font-weight: 700;">$400.00</span>
+                    </div>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <a href="https://venmo.com/john-greenfield-3" style="flex: 1; min-width: 140px; padding: 10px 16px; background: #3d5afe; color: #fff; border-radius: 6px; text-align: center; text-decoration: none; font-size: 13px; font-weight: 600;">Venmo @john-greenfield-3</a>
+                        <a href="https://paypal.me/johngreenfield28" style="flex: 1; min-width: 140px; padding: 10px 16px; background: #003087; color: #fff; border-radius: 6px; text-align: center; text-decoration: none; font-size: 13px; font-weight: 600;">PayPal.me/johngreenfield28</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- REPORT -->
+            <div id="sec-report" class="sec">
+                <h2>Summary Report — May 2026 Full Month</h2>
+                <div class="summary-box">
+                    <div class="summary-text">
+                        <b>Google Ads</b><br/>
+                        11,721 impressions · 494 clicks · $1,100.51 spend · 56 conversions · $19.65/lead<br/>
+                        Search: 21.34 conv · $30.54/lead | PMax: 34.66 conv · $12.95/lead<br/>
+                        Top keyword: "lawn and landscaping service" — 8.00 conversions<br/><br/>
+
+                        <b>Meta Ads</b><br/>
+                        52,253 impressions · 27,644 reach · 1,192 clicks · $582.88 spend · 6 form submissions<br/>
+                        Cortland Lead Campaign: 4 subs @ $45.88/lead | Retarget: 2 subs @ $91.55/lead<br/>
+                        3 post boost campaigns supporting awareness (no direct leads)<br/><br/>
+
+                        <b>Local Service Ads</b><br/>
+                        111 charged leads · $2,512.16 spend · <strong>$22.63 cost per lead</strong><br/>
+                        Phone leads: 87 ($2,045.31) | Message leads: 24 ($466.85)<br/>
+                        Top impression rate: 99.15% · Absolute top: 97.44%<br/>
+                        Top locations: Johnson City (21), Binghamton (21), Endicott (18), Cortland (9)<br/><br/>
+
+                        <b>Combined — All Channels</b><br/>
+                        Total spend: <strong>$4,195.55</strong> (Google $1,100.51 + Meta $582.88 + LSA $2,512.16)<br/>
+                        Total leads: <strong>173</strong> (56 Google + 6 Meta + 111 LSA)<br/>
+                        <strong>Blended cost per lead: $24.25</strong><br/><br/>
+
+                        ✅ <b>Notes:</b> PMax continues to outperform Search at $12.95/lead. Meta retarget CPL jumped to $91.55 vs $45.37 in April — creative refresh recommended. LSA spend increased ~$900 vs April; volume up from 100 → 111 leads.
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <nav class="mob-nav">
+        <div class="mob-nav-inner">
+            <div class="mn on" onclick="go('overview', null); mn(this)"><div class="mn-icon">◈</div><div class="mn-label">Home</div></div>
+            <div class="mn" onclick="go('google-campaigns', null); mn(this)"><div class="mn-icon">G</div><div class="mn-label">Google</div></div>
+            <div class="mn" onclick="go('meta', null); mn(this)"><div class="mn-icon">f</div><div class="mn-label">Meta</div></div>
+            <div class="mn" onclick="go('lsa', null); mn(this)"><div class="mn-icon">⭐</div><div class="mn-label">LSA</div></div>
+            <div class="mn" onclick="go('invoice', null); mn(this)"><div class="mn-icon">💳</div><div class="mn-label">Invoice</div></div>
+        </div>
+    </nav>
+
+    <script>
+        function go(id, el) {
+            document.querySelectorAll('.sec').forEach(s => s.classList.remove('on'));
+            document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('on'));
+            document.getElementById('sec-' + id).classList.add('on');
+            if (el) el.classList.add('on');
+            window.scrollTo(0, 0);
+        }
+        function mn(el) {
+            document.querySelectorAll('.mn').forEach(n => n.classList.remove('on'));
+            el.classList.add('on');
+        }
+    </script>
+</body>
+</html>
